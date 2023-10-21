@@ -1,0 +1,113 @@
+body {
+  background-color: grey;
+  font-family: Arial, sans-serif;
+  color: black;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+h2 {
+  text-align:center;
+  border-bottom:3px solid black;
+  padding-bottom:3px;
+}
+
+.stickymain {
+  position:sticky;
+  top:0;
+}
+
+.title {
+    
+    font-weight: bold;
+    text-align: center;
+    font-size: 80px;
+    border-radius:10px;
+    color:black;
+    background-color: rgb(219, 219, 50);
+    color: black;
+    padding-bottom: 10px;
+    padding-top: 10px;
+    margin-bottom: 3px;
+    border-bottom: 3px solid black;
+    margin-top:0px;
+}
+
+.topnav {
+    background-color: rgb(219, 219, 50);
+    color: black;
+    overflow: hidden;
+    border-radius:5px;
+    border-bottom: 3px solid black;
+    justify-content: center;
+    width: fit-content;
+    margin-right:0px;
+    float:left;
+}
+
+.topnav a {
+    display: inline-block;
+    background-color: rgb(219, 219, 50);
+    color: black;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    font-size:20px;
+}
+
+.topnav a:hover {
+    background-color: grey;
+}
+
+.overview {
+    background-color:rgb(219, 219, 50);
+    width:60%;
+    border: 3px solid black;
+    border-radius:10px;
+    margin:auto;
+    padding:10px;
+    margin-top:5%;
+    word-wrap: break-word;
+    text-align:center;
+}
+
+#ovrhead {
+    font-size:42px;
+    padding-bottom:30px;
+    border-bottom:6px solid black;
+}
+
+#ovrcont {
+    font-size:28px;  
+}
+
+.pagebox {
+    background-color:rgb(219, 219, 50);
+    width:20%;
+    border: 3px solid black;
+    border-radius:10px;
+    padding:10px;
+    margin-top:10%;
+    word-wrap: break-word;
+    display:inline-block;
+    cursor: pointer;
+}
+#page1 {
+  float:left;
+  margin-left:10%;
+}
+
+
+
+#page3 {
+  float:right;
+  margin-right:10%
+}
+
+footer {
+  text-align:center;
+  background-color:rgb(219, 219, 50);
+  font-size: 14px;
+  margin-top: auto;
+}
