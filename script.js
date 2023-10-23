@@ -4,10 +4,7 @@ window.addEventListener('DOMContentLoaded', () => {
         let currentBox = pageBoxes[i]
         let boxLink = document.getElementById('link' + (i+1)).href;
         currentBox.addEventListener('click', function() {
-            alert(boxLink);
             window.location.href = boxLink;
         });
-    }
-    
+    };
 });
-

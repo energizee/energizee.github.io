@@ -93,7 +93,7 @@ h2 {
     display:inline-block;
     cursor: pointer;
 }
-#leftbox {
+#leftpage {
   float:left;
   margin-left:10%;
 }
@@ -102,9 +102,39 @@ h2 {
   margin-right:5%;
 }
 
-#rightbox {
+#rightpage {
   float:right;
-  margin-right:10%
+  margin-right:10%;
+}
+
+#quote {
+  text-align: center;
+  font-style: italic;
+}
+
+.leftbox {
+  background-color:rgb(219, 219, 50);
+  width:80%;
+  border: 3px solid black;
+  border-radius:10px;
+  padding:10px;
+  margin-top:5%;
+  margin-bottom:2%;
+  word-wrap: break-word;
+  float:left;
+  margin-right:auto;
+}
+
+.rightbox {
+  background-color:rgb(219, 219, 50);
+  width:80%;
+  border: 3px solid black;
+  border-radius:10px;
+  padding:10px;
+  margin-bottom:2%;
+  margin-top:5%;
+  word-wrap: break-word;
+  margin-left:auto;
 }
 
 footer {
