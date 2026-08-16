@@ -815,6 +815,45 @@ svg {
   height: 100%;
 }
 
+/* The halo — the five stacked rings behind the cat, which are the only
+   circles sitting directly inside the cat's <svg>. Their opacity lives here
+   rather than in the markup so the glow is tuned in one place across every
+   page. The CSS wins over the inline opacity attribute.
+
+   Each ring carries its own base opacity and breathes on a slight delay
+   behind the one inside it, so the glow swells outward rather than pulsing
+   as a single flat disc. */
+.cat svg > circle {
+  opacity: var(--glow);
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: catGlow 5.5s ease-in-out infinite;
+}
+
+.cat svg > circle:nth-of-type(1) {
+  --glow: 0.115;
+}
+
+.cat svg > circle:nth-of-type(2) {
+  --glow: 0.09;
+  animation-delay: 140ms;
+}
+
+.cat svg > circle:nth-of-type(3) {
+  --glow: 0.068;
+  animation-delay: 280ms;
+}
+
+.cat svg > circle:nth-of-type(4) {
+  --glow: 0.048;
+  animation-delay: 420ms;
+}
+
+.cat svg > circle:nth-of-type(5) {
+  --glow: 0.032;
+  animation-delay: 560ms;
+}
+
 .cat-fur {
   fill: var(--cat);
   stroke: var(--cat-stroke);
@@ -915,6 +954,18 @@ svg {
   }
   50% {
     opacity: 0.25;
+  }
+}
+
+@keyframes catGlow {
+  0%,
+  100% {
+    opacity: var(--glow);
+    transform: scale(1);
+  }
+  50% {
+    opacity: calc(var(--glow) * 1.6);
+    transform: scale(1.05);
   }
 }
 

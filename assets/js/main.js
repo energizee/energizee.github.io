@@ -178,7 +178,7 @@
     const lids = cat.querySelector("[data-cat-lids]");
     const ear = cat.querySelector("[data-cat-ear]");
 
-    // Blink on a loose interval so it never looks metronomic.
+    // Blink on a loose interval so it never looks metronomic: 5-11 seconds.
     const blink = () => {
       window.setTimeout(() => {
         if (lids) {
@@ -188,7 +188,7 @@
           }, 90);
         }
         blink();
-      }, 6000 + Math.random() * 6000);
+      }, 5000 + Math.random() * 6000);
     };
     blink();
 
