@@ -470,9 +470,24 @@ svg {
   margin: 0 0 24px;
 }
 
-/* Date and role, sat directly under the project title. */
+/* Date and role, sat directly under the project title. inline-block so the
+   pill hugs the text rather than stretching the full card width. */
 .card-note {
+  display: inline-block;
   margin: 0 0 14px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  background: color-mix(in oklch, var(--mist) 16%, transparent);
+  font-family: Sora, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 12px;
+  letter-spacing: 0.04em;
+  color: var(--starlight);
+}
+
+/* Longer explanatory line on a project page — plain text, not a pill. */
+.source-note {
+  margin: 0;
   font-family: "Space Mono", ui-monospace, monospace;
   font-size: 12px;
   letter-spacing: 0.06em;
