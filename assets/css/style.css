@@ -72,6 +72,9 @@ body {
   margin: 0;
   padding: 0 var(--gutter);
   min-height: 100vh;
+  /* svh tracks the visible area as mobile browser toolbars slide in and out,
+     so the page does not gain a sliver of phantom scroll. */
+  min-height: 100svh;
   position: relative;
   /* `clip` rather than `hidden`: it stops the decorative layers widening the
      page without turning <body> into a scroll container, which would break
@@ -955,15 +958,21 @@ svg {
   }
 }
 
+/* Below this width the scenery stops being fixed to the viewport and parks at
+   the foot of the page instead — fixed backgrounds judder badly while a phone
+   scrolls. These are positioned against <body>, whose padding box is inset by
+   the gutter, so the insets are pulled back out to reach the screen edges. */
 @media (max-width: 940px) {
   .cat-layer {
     position: absolute;
-    inset: auto 0 0 0;
+    inset: auto calc(var(--gutter) * -1) 0;
     height: 340px;
   }
 
   .hills {
     position: absolute;
+    left: calc(var(--gutter) * -1);
+    right: calc(var(--gutter) * -1);
   }
 
   .cat {
@@ -1026,27 +1035,37 @@ svg {
 }
 
 @media (max-width: 600px) {
-  .cat-layer {
-    display: none;
+  .cat {
+    width: 76px;
+    height: 76px;
+    right: 14px;
+    bottom: 62px;
   }
 }
 
+/* Five nav items plus the toggle run out of room on a phone. Rather than
+   shrink the labels to an unreadable size, let the pill scroll sideways.
+   `safe center` keeps it centred while it fits and falls back to flex-start
+   when it does not, so the first item never ends up unreachable. */
 @media (max-width: 560px) {
+  .site-nav {
+    justify-content: safe center;
+    overflow-x: auto;
+    overscroll-behavior-x: contain;
+    scrollbar-width: none;
+  }
+
+  .site-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .nav-pill {
+    flex: 0 0 auto;
+  }
+
   .nav-link {
     padding: 0 8px;
     font-size: 11px;
-  }
-}
-
-/* Five nav items plus the toggle need the extra room on small phones. */
-@media (max-width: 430px) {
-  .nav-link {
-    padding: 0 5px;
-    font-size: 10px;
-  }
-
-  .theme-toggle {
-    margin-left: 4px;
   }
 }
 
