@@ -1,0 +1,1088 @@
+/* ==========================================================================
+   Lee Elder — portfolio
+   Night is the default theme; `data-theme="day"` on <html> flips the palette.
+   ========================================================================== */
+
+/* --- Tokens ------------------------------------------------------------- */
+
+:root {
+  color-scheme: dark;
+
+  --void: #120a2a;
+  --panel: #1e1240;
+  --panel-edge: #3b2a6b;
+  --starlight: #f3ecff;
+  --mist: #b6a9dc;
+
+  --nebula: #ff6fd8;
+  --ember: #ffc46b;
+  --aurora: #5fe3c0;
+  --comet: #7aa7ff;
+
+  --hill-a: #241552;
+  --hill-b: #331c68;
+  --hill-c: #46216f;
+
+  --cat: #0a0518;
+  --cat-stroke: transparent;
+  --halo: #ffc46b;
+
+  --measure: 680px;
+  --gutter: 24px;
+  --ease: cubic-bezier(0.2, 0.8, 0.2, 1);
+}
+
+[data-theme="day"] {
+  color-scheme: light;
+
+  --void: #f4efff;
+  --panel: #ffffff;
+  --panel-edge: #dcd2f5;
+  --starlight: #2a1b4d;
+  --mist: #6b5e96;
+
+  --nebula: #c42e92;
+  --ember: #a66a0d;
+  --aurora: #0e8570;
+  --comet: #3b63c9;
+
+  --hill-a: #eadbfb;
+  --hill-b: #f7d9ec;
+  --hill-c: #d9efe6;
+
+  --cat: #ffffff;
+  --cat-stroke: #ffffff;
+  --halo: #c42e92;
+}
+
+/* --- Base --------------------------------------------------------------- */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  background: var(--void);
+}
+
+body {
+  margin: 0;
+  padding: 0 var(--gutter);
+  min-height: 100vh;
+  position: relative;
+  /* `clip` rather than `hidden`: it stops the decorative layers widening the
+     page without turning <body> into a scroll container, which would break
+     the sticky header. */
+  overflow-x: clip;
+  background: var(--void);
+  color: var(--starlight);
+  font-family: Manrope, system-ui, sans-serif;
+  font-size: 17px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: Sora, system-ui, sans-serif;
+  font-weight: 600;
+  letter-spacing: -0.02em;
+}
+
+a {
+  color: var(--comet);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover {
+  text-decoration-thickness: 2px;
+}
+
+:focus-visible {
+  outline: 2px solid var(--comet);
+  outline-offset: 2px;
+  border-radius: 4px;
+}
+
+svg {
+  display: block;
+}
+
+.skip-link {
+  position: absolute;
+  left: 50%;
+  top: 8px;
+  z-index: 50;
+  translate: -50% -200%;
+  padding: 10px 18px;
+  border-radius: 999px;
+  background: var(--panel);
+  border: 0.5px solid var(--panel-edge);
+  color: var(--starlight);
+  text-decoration: none;
+  font-size: 14px;
+}
+
+.skip-link:focus-visible {
+  translate: -50% 0;
+}
+
+/* --- Layout ------------------------------------------------------------- */
+
+.site-main {
+  max-width: var(--measure);
+  margin: 0 auto;
+  position: relative;
+  z-index: 2;
+}
+
+.section {
+  padding-top: 120px;
+  scroll-margin-top: 88px;
+}
+
+.section--hero {
+  padding-top: 72px;
+  position: relative;
+  scroll-margin-top: 88px;
+}
+
+.section--contact {
+  padding-bottom: 240px;
+}
+
+.section-title {
+  font-size: 36px;
+  line-height: 1.15;
+  margin: 0 0 32px;
+}
+
+/* --- Header / nav ------------------------------------------------------- */
+
+.site-header {
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin: 0 calc(var(--gutter) * -1);
+  padding: 0 var(--gutter);
+}
+
+.site-nav {
+  max-width: var(--measure);
+  margin: 0 auto;
+  height: 64px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.nav-pill {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding: 6px;
+  border-radius: 999px;
+  border: 0.5px solid var(--panel-edge);
+  background: color-mix(in oklch, var(--void) 62%, transparent);
+  backdrop-filter: blur(14px) saturate(1.15);
+  -webkit-backdrop-filter: blur(14px) saturate(1.15);
+}
+
+.nav-link {
+  position: relative;
+  display: inline-flex;
+  align-items: center;
+  height: 36px;
+  padding: 0 12px;
+  border-radius: 999px;
+  color: var(--mist);
+  text-decoration: none;
+  font-family: Sora, system-ui, sans-serif;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  white-space: nowrap;
+  background: transparent;
+  transition: color 160ms;
+}
+
+.nav-link:hover {
+  color: var(--starlight);
+  text-decoration: none;
+}
+
+.nav-link[aria-current="true"] {
+  color: var(--nebula);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  bottom: 6px;
+  height: 1.5px;
+  border-radius: 2px;
+  background: var(--nebula);
+  opacity: 0;
+  transform: scaleX(0.35);
+  transition:
+    opacity 180ms linear,
+    transform 220ms var(--ease);
+}
+
+.nav-link[aria-current="true"]::after {
+  opacity: 1;
+  transform: scaleX(1);
+}
+
+.theme-toggle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 36px;
+  height: 36px;
+  margin-left: 8px;
+  padding: 0;
+  border-radius: 999px;
+  border: 0.5px solid var(--panel-edge);
+  background: var(--panel);
+  color: var(--starlight);
+  cursor: pointer;
+  transition: border-color 160ms;
+}
+
+.theme-toggle:hover {
+  border-color: var(--comet);
+}
+
+/* Night/day icon swap, used by both the nav toggle and the sky. */
+.is-night-only {
+  display: block;
+}
+
+.is-day-only {
+  display: none;
+}
+
+[data-theme="day"] .is-night-only {
+  display: none;
+}
+
+[data-theme="day"] .is-day-only {
+  display: block;
+}
+
+/* --- Hero --------------------------------------------------------------- */
+
+.hero-title {
+  font-size: 56px;
+  line-height: 1.08;
+  margin: 0 0 24px;
+}
+
+.line-mask {
+  display: block;
+  overflow: hidden;
+}
+
+.line-mask > * {
+  display: block;
+  animation: lineUp 420ms var(--ease) both;
+}
+
+.hero-subtitle {
+  overflow: hidden;
+  margin: 0 0 32px;
+  font-size: 26px;
+  line-height: 1.35;
+  font-family: Sora, system-ui, sans-serif;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+}
+
+.hero-subtitle > span {
+  animation-delay: 60ms;
+}
+
+.button-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  height: 40px;
+  padding: 0 18px;
+  border-radius: 999px;
+  border: 0.5px solid var(--panel-edge);
+  background: var(--panel);
+  color: var(--starlight);
+  text-decoration: none;
+  font-size: 15px;
+  transition:
+    border-color 160ms,
+    transform 220ms var(--ease);
+}
+
+.btn:hover {
+  border-color: var(--comet);
+  color: var(--starlight);
+  transform: translateY(-2px);
+}
+
+.btn--primary {
+  background: var(--nebula);
+  border-color: transparent;
+  color: var(--void);
+  font-weight: 500;
+}
+
+.btn--primary:hover {
+  border-color: transparent;
+  color: var(--void);
+}
+
+/* Card-scale button — the 40px default is too heavy inside a project card. */
+.btn--sm {
+  height: 34px;
+  padding: 0 16px;
+  font-size: 14px;
+}
+
+.btn-arrow {
+  margin-left: 8px;
+  transition: transform 220ms var(--ease);
+}
+
+.btn:hover .btn-arrow {
+  transform: translateX(3px);
+}
+
+/* The card itself already lifts on hover; a button lifting inside it too
+   reads as a double bounce, so let the arrow carry the feedback instead. */
+.card .btn:hover {
+  transform: none;
+}
+
+/* --- Fact panel --------------------------------------------------------- */
+
+.facts {
+  position: relative;
+  z-index: 1;
+  margin-top: 48px;
+  background: var(--panel);
+  border: 0.5px solid var(--panel-edge);
+  border-radius: 12px;
+  padding: 32px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 24px;
+}
+
+.facts dt {
+  margin: 0 0 8px;
+  font-family: Sora, system-ui, sans-serif;
+  font-size: 11px;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.facts dd {
+  margin: 0;
+  font-size: 13px;
+  line-height: 1.5;
+  color: var(--starlight);
+}
+
+.facts dd.is-open {
+  color: var(--aurora);
+}
+
+/* --- Project cards ------------------------------------------------------ */
+
+.card {
+  display: block;
+  border: 0.5px solid var(--panel-edge);
+  background: var(--panel);
+  border-radius: 12px;
+  padding: 24px;
+  margin-bottom: 24px;
+  transition:
+    border-color 160ms,
+    transform 220ms var(--ease),
+    box-shadow 220ms var(--ease);
+}
+
+.card:last-child {
+  margin-bottom: 0;
+}
+
+.card:hover {
+  transform: translateY(-6px);
+  box-shadow:
+    0 18px 40px -22px rgba(0, 0, 0, 0.55),
+    0 0 34px -14px color-mix(in oklch, var(--aurora) 45%, transparent);
+}
+
+.card-title {
+  font-size: 20px;
+  margin: 0 0 8px;
+  transition: transform 160ms var(--ease);
+}
+
+.card-body {
+  margin: 0 0 16px;
+  color: var(--mist);
+  font-size: 15px;
+}
+
+.card--featured {
+  border-radius: 16px;
+  padding: 40px;
+  margin: 0 -20px 40px;
+  animation: featGlow 9s ease-in-out infinite;
+}
+
+.card--featured:hover {
+  box-shadow: none;
+}
+
+.card--featured .card-title {
+  font-size: 32px;
+  margin: 0 0 10px;
+}
+
+.card-lede {
+  margin: 0 0 16px;
+  color: var(--starlight);
+  font-size: 19px;
+}
+
+.card--featured .card-body {
+  margin: 0 0 24px;
+}
+
+/* Date and role, sat directly under the project title. */
+.card-note {
+  margin: 0 0 14px;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--mist);
+}
+
+/* --- Tech chips --------------------------------------------------------- */
+
+.chips {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin: 0 0 16px;
+  padding: 0;
+  list-style: none;
+}
+
+.card--featured .chips {
+  margin-bottom: 24px;
+}
+
+.chips li {
+  display: inline-flex;
+  align-items: center;
+  height: 28px;
+  padding: 0 12px;
+  border-radius: 999px;
+  border: 0.5px solid var(--panel-edge);
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--mist);
+  white-space: nowrap;
+}
+
+/* --- About / contact ---------------------------------------------------- */
+
+.prose {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.prose p {
+  margin: 0;
+}
+
+/* Each About topic sits in its own panel so the section reads as structure
+   rather than a wall of text. Same panel treatment as the project cards. */
+.about-card {
+  background: var(--panel);
+  border: 0.5px solid var(--panel-edge);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.about-card--accent {
+  border-color: color-mix(in oklch, var(--aurora) 45%, var(--panel-edge));
+}
+
+/* Small uppercase label above a block of content. Shared by About and Skills. */
+.eyebrow {
+  margin: 0 0 12px;
+  font-family: Sora, system-ui, sans-serif;
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--mist);
+}
+
+.about-card--accent .eyebrow {
+  color: var(--aurora);
+}
+
+/* --- Project detail pages ----------------------------------------------- */
+
+.detail-main {
+  padding-bottom: 240px;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 24px 0 32px;
+  font-family: "Space Mono", ui-monospace, monospace;
+  font-size: 12px;
+  letter-spacing: 0.06em;
+  color: var(--mist);
+  text-decoration: none;
+  transition: color 160ms;
+}
+
+.back-link:hover {
+  color: var(--starlight);
+  text-decoration: none;
+}
+
+.back-arrow {
+  transition: transform 220ms var(--ease);
+}
+
+.back-link:hover .back-arrow {
+  transform: translateX(-3px);
+}
+
+.detail-title {
+  font-size: 44px;
+  line-height: 1.1;
+  margin: 0 0 12px;
+}
+
+.detail-lede {
+  margin: 0 0 24px;
+  font-size: 19px;
+  color: var(--starlight);
+}
+
+.detail-section {
+  margin-top: 24px;
+  background: var(--panel);
+  border: 0.5px solid var(--panel-edge);
+  border-radius: 12px;
+  padding: 28px;
+}
+
+.detail-section h2 {
+  font-size: 20px;
+  margin: 0 0 14px;
+}
+
+.detail-section p {
+  margin: 0 0 14px;
+}
+
+.detail-section ul:not(.chips) {
+  margin: 0 0 14px;
+  padding-left: 22px;
+}
+
+.detail-section li {
+  margin-bottom: 6px;
+}
+
+.detail-section > :last-child {
+  margin-bottom: 0;
+}
+
+/* Unmissable while drafting. Delete the class once real copy is in. */
+.placeholder {
+  color: var(--mist);
+  border-left: 2px solid var(--ember);
+  padding-left: 16px;
+}
+
+/* --- Skills ------------------------------------------------------------- */
+
+.skills {
+  background: var(--panel);
+  border: 0.5px solid var(--panel-edge);
+  border-radius: 12px;
+  padding: 28px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.skill-group .chips {
+  margin: 0;
+}
+
+.highlight {
+  color: var(--ember);
+}
+
+.contact-lede {
+  margin: 0 0 24px;
+  color: var(--mist);
+}
+
+.contact-email {
+  margin: 0 0 32px;
+  font-family: Sora, system-ui, sans-serif;
+  font-weight: 500;
+  font-size: 26px;
+  letter-spacing: -0.02em;
+}
+
+/* --- Decorative sky, hills, cat ----------------------------------------- */
+
+.sky,
+.hills,
+.cat-layer {
+  pointer-events: none;
+}
+
+.sky {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.sky-body {
+  position: absolute;
+  top: 104px;
+  right: calc(50% - 470px);
+}
+
+.stars {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  fill: var(--starlight);
+}
+
+/* Holds the <symbol> the sparkles share. Never painted itself. */
+.sprite {
+  position: absolute;
+}
+
+.spark {
+  position: absolute;
+  width: var(--size);
+  height: var(--size);
+  fill: var(--tint);
+  opacity: 0;
+  animation: sparkIn 200ms linear forwards;
+}
+
+/* The first three fade in and then keep twinkling; the last two just arrive. */
+.spark--a,
+.spark--b,
+.spark--c {
+  animation:
+    sparkIn 200ms linear forwards,
+    twinkle 4s ease-in-out infinite;
+}
+
+.spark--a {
+  --size: 18px;
+  --tint: var(--nebula);
+  top: 120px;
+  left: 12%;
+  animation-delay: 600ms, 1200ms;
+}
+
+.spark--b {
+  --size: 12px;
+  --tint: var(--ember);
+  top: 220px;
+  right: 14%;
+  animation-delay: 800ms, 1600ms;
+}
+
+.spark--c {
+  --size: 14px;
+  --tint: var(--comet);
+  top: 64px;
+  right: 26%;
+  animation-delay: 1000ms, 2000ms;
+}
+
+.spark--d {
+  --size: 16px;
+  --tint: var(--aurora);
+  top: 46%;
+  left: 7%;
+  animation-delay: 1200ms;
+}
+
+.spark--e {
+  --size: 11px;
+  --tint: var(--nebula);
+  top: 12%;
+  left: 44%;
+  animation-delay: 1400ms;
+}
+
+.hills {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  height: 340px;
+  z-index: 0;
+}
+
+.hills svg {
+  position: absolute;
+  left: 0;
+  bottom: 0;
+  width: 100%;
+  height: 340px;
+}
+
+.cat-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 1;
+}
+
+.cat {
+  position: absolute;
+  right: max(12px, calc(50% - 520px));
+  bottom: 96px;
+  width: 150px;
+  height: 150px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 999px;
+  pointer-events: auto;
+}
+
+.cat svg {
+  overflow: visible;
+  width: 100%;
+  height: 100%;
+}
+
+.cat-fur {
+  fill: var(--cat);
+  stroke: var(--cat-stroke);
+  stroke-width: 1.5;
+  stroke-linejoin: round;
+  transition:
+    fill 300ms linear,
+    stroke 300ms linear;
+}
+
+.cat-tail-outer {
+  fill: none;
+  stroke: var(--cat-stroke);
+  stroke-width: 14;
+  stroke-linecap: round;
+}
+
+.cat-tail-inner {
+  fill: none;
+  stroke: var(--cat);
+  stroke-width: 11;
+  stroke-linecap: round;
+  transition: stroke 300ms linear;
+}
+
+.cat-ear {
+  transform-origin: 82px 80px;
+  transition: transform 240ms var(--ease);
+}
+
+.cat-eyes {
+  transition: transform 200ms var(--ease);
+}
+
+.cat-lids {
+  transform-origin: 100px 92px;
+  transition: transform 90ms linear;
+}
+
+/* --- Scroll reveal ------------------------------------------------------
+   Only applied once JS confirms it can drive the observer, so a no-JS
+   visitor still sees every section.
+   ------------------------------------------------------------------------ */
+
+.js-reveal [data-reveal] {
+  opacity: 0;
+  transform: translateY(12px);
+  transition:
+    opacity 520ms var(--ease),
+    transform 520ms var(--ease);
+}
+
+.js-reveal [data-reveal]:nth-child(2) {
+  transition-delay: 60ms;
+}
+
+.js-reveal [data-reveal]:nth-child(3) {
+  transition-delay: 120ms;
+}
+
+.js-reveal [data-reveal]:nth-child(n + 4) {
+  transition-delay: 180ms;
+}
+
+.js-reveal [data-reveal].is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.js-reveal [data-reveal].is-above {
+  transform: translateY(-12px);
+}
+
+/* --- Animations --------------------------------------------------------- */
+
+@keyframes lineUp {
+  from {
+    transform: translateY(105%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes sparkIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes twinkle {
+  0%,
+  100% {
+    opacity: 0.9;
+  }
+  50% {
+    opacity: 0.25;
+  }
+}
+
+@keyframes featGlow {
+  0%,
+  100% {
+    box-shadow:
+      0 0 0 0.5px var(--panel-edge),
+      0 0 28px -6px color-mix(in oklch, var(--aurora) 40%, transparent),
+      0 0 70px -18px color-mix(in oklch, var(--nebula) 30%, transparent);
+  }
+  50% {
+    box-shadow:
+      0 0 0 0.5px color-mix(in oklch, var(--aurora) 55%, var(--panel-edge)),
+      0 0 40px -4px color-mix(in oklch, var(--aurora) 62%, transparent),
+      0 0 110px -14px color-mix(in oklch, var(--nebula) 48%, transparent);
+  }
+}
+
+/* --- Responsive --------------------------------------------------------- */
+
+@media (max-width: 1180px) {
+  .cat {
+    width: 104px;
+    height: 104px;
+    right: calc(50% - 462px);
+    bottom: 64px;
+  }
+}
+
+@media (max-width: 1080px), (max-height: 700px) {
+  .hills,
+  .hills svg {
+    height: 240px;
+  }
+}
+
+@media (max-width: 1060px) {
+  .sky-body {
+    display: none;
+  }
+}
+
+@media (max-width: 940px) {
+  .cat-layer {
+    position: absolute;
+    inset: auto 0 0 0;
+    height: 340px;
+  }
+
+  .hills {
+    position: absolute;
+  }
+
+  .cat {
+    width: 88px;
+    height: 88px;
+    right: max(8px, calc(50% - 300px));
+    bottom: 96px;
+  }
+}
+
+@media (max-width: 820px) {
+  .facts {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 760px) {
+  .card--featured {
+    margin-left: 0;
+    margin-right: 0;
+    padding: 28px;
+  }
+}
+
+@media (max-width: 640px) {
+  .hero-title {
+    font-size: 40px;
+  }
+
+  .hero-subtitle {
+    font-size: 22px;
+  }
+
+  .section-title {
+    font-size: 30px;
+  }
+
+  .card--featured .card-title {
+    font-size: 26px;
+  }
+
+  .about-card,
+  .skills,
+  .detail-section {
+    padding: 22px;
+  }
+
+  .detail-title {
+    font-size: 32px;
+  }
+
+  body {
+    --gutter: 20px;
+  }
+
+  .hills,
+  .hills svg {
+    height: 190px;
+  }
+}
+
+@media (max-width: 600px) {
+  .cat-layer {
+    display: none;
+  }
+}
+
+@media (max-width: 560px) {
+  .nav-link {
+    padding: 0 8px;
+    font-size: 11px;
+  }
+}
+
+/* Five nav items plus the toggle need the extra room on small phones. */
+@media (max-width: 430px) {
+  .nav-link {
+    padding: 0 5px;
+    font-size: 10px;
+  }
+
+  .theme-toggle {
+    margin-left: 4px;
+  }
+}
+
+@media (max-width: 400px) {
+  .facts {
+    grid-template-columns: 1fr;
+    padding: 24px;
+  }
+}
+
+/* --- Motion preferences ------------------------------------------------- */
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .js-reveal [data-reveal] {
+    opacity: 1;
+    transform: none;
+  }
+
+  .spark {
+    opacity: 1;
+  }
+}
+
+/* --- Print -------------------------------------------------------------- */
+
+@media print {
+  .sky,
+  .hills,
+  .cat-layer,
+  .site-header,
+  .skip-link {
+    display: none !important;
+  }
+
+  body {
+    background: #fff;
+    color: #000;
+  }
+
+  .section {
+    padding-top: 32px;
+  }
+}

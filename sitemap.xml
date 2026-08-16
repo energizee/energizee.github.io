@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+  <url>
+    <loc>https://leeelder.dev/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>1.0</priority>
+  </url>
+  <!-- Project pages are still placeholders. Add them back, and drop the
+       noindex tag from each, once they have real content:
+  <url><loc>https://leeelder.dev/projects/grademap.html</loc></url>
+  <url><loc>https://leeelder.dev/projects/hackathon-study.html</loc></url>
+  <url><loc>https://leeelder.dev/projects/netchat.html</loc></url>
+  <url><loc>https://leeelder.dev/projects/shell.html</loc></url>
+  -->
+</urlset>

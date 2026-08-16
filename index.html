@@ -1,0 +1,571 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Lee Elder's Portfolio</title>
+    <meta
+      name="description"
+      content="Lee Elder, a desktop and web developer in Glasgow, Scotland. BSc Computing Science at Strathclyde, graduating June 2027 and open to graduate roles."
+    />
+    <meta name="author" content="Lee Elder" />
+    <meta name="theme-color" content="#120a2a" />
+    <link rel="canonical" href="https://leeelder.dev/" />
+
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://leeelder.dev/" />
+    <meta property="og:title" content="Lee Elder's Portfolio" />
+    <meta
+      property="og:description"
+      content="Desktop and web developer in Glasgow, Scotland. BSc Computing Science at Strathclyde, graduating June 2027."
+    />
+    <meta property="og:locale" content="en_GB" />
+    <meta
+      property="og:image"
+      content="https://leeelder.dev/content/image.png"
+    />
+    <meta property="og:image:width" content="1187" />
+    <meta property="og:image:height" content="765" />
+    <meta
+      property="og:image:alt"
+      content="Lee Elder's portfolio site — a night sky over rolling hills."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="preload"
+      as="style"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&amp;family=Manrope:wght@400;500&amp;family=Space+Mono&amp;display=swap"
+    />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&amp;family=Manrope:wght@400;500&amp;family=Space+Mono&amp;display=swap"
+    />
+    <link rel="stylesheet" href="assets/css/style.css" />
+
+    <script>
+      /* Set the theme before first paint so there is no flash of the wrong palette. */
+      (() => {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("le-theme");
+        } catch (e) {}
+        const day = saved
+          ? saved === "day"
+          : window.matchMedia("(prefers-color-scheme: light)").matches;
+        if (day) document.documentElement.dataset.theme = "day";
+      })();
+    </script>
+    <script src="assets/js/main.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <!-- Sky: moon or sun, star field, sparkles. Decorative only. -->
+    <div class="sky" aria-hidden="true">
+      <svg
+        class="sky-body is-night-only"
+        viewBox="0 0 120 120"
+        width="120"
+        height="120"
+      >
+        <mask id="crescent">
+          <rect width="120" height="120" fill="#fff"></rect>
+          <circle cx="74" cy="46" r="30" fill="#000"></circle>
+        </mask>
+        <circle
+          cx="60"
+          cy="60"
+          r="44"
+          fill="var(--mist)"
+          opacity=".10"
+          mask="url(#crescent)"
+        ></circle>
+        <circle
+          cx="60"
+          cy="60"
+          r="36"
+          fill="var(--mist)"
+          opacity=".16"
+          mask="url(#crescent)"
+        ></circle>
+        <circle
+          cx="60"
+          cy="60"
+          r="30"
+          fill="var(--starlight)"
+          opacity=".92"
+          mask="url(#crescent)"
+        ></circle>
+      </svg>
+      <svg
+        class="sky-body is-day-only"
+        viewBox="0 0 120 120"
+        width="120"
+        height="120"
+      >
+        <circle
+          cx="60"
+          cy="60"
+          r="44"
+          fill="var(--ember)"
+          opacity=".10"
+        ></circle>
+        <circle
+          cx="60"
+          cy="60"
+          r="35"
+          fill="var(--ember)"
+          opacity=".18"
+        ></circle>
+        <circle
+          cx="60"
+          cy="60"
+          r="27"
+          fill="var(--ember)"
+          opacity=".95"
+        ></circle>
+      </svg>
+
+      <!-- Populated by main.js from a fixed seed. Decorative, so no JS means no
+       stars and nothing else is affected. -->
+      <svg class="stars" data-stars></svg>
+
+      <svg class="sprite" width="0" height="0">
+        <symbol id="spark" viewBox="0 0 24 24">
+          <path d="M12 0 14 10 24 12 14 14 12 24 10 14 0 12 10 10Z"></path>
+        </symbol>
+      </svg>
+
+      <svg class="spark spark--a"><use href="#spark"></use></svg>
+      <svg class="spark spark--b"><use href="#spark"></use></svg>
+      <svg class="spark spark--c"><use href="#spark"></use></svg>
+      <svg class="spark spark--d"><use href="#spark"></use></svg>
+      <svg class="spark spark--e"><use href="#spark"></use></svg>
+    </div>
+
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Primary">
+        <div class="nav-pill">
+          <a class="nav-link" data-nav-link href="#hero">Home</a>
+          <a class="nav-link" data-nav-link href="#work">Projects</a>
+          <a class="nav-link" data-nav-link href="#skills">Skills</a>
+          <a class="nav-link" data-nav-link href="#about">About</a>
+          <a class="nav-link" data-nav-link href="#contact">Contact</a>
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Switch to day mode"
+            title="Switch to day mode"
+          >
+            <svg
+              class="is-night-only"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <mask id="navmoon">
+                <rect width="24" height="24" fill="#fff"></rect>
+                <circle cx="16.5" cy="8" r="7.5" fill="#000"></circle>
+              </mask>
+              <circle
+                cx="12"
+                cy="12"
+                r="8"
+                fill="var(--starlight)"
+                mask="url(#navmoon)"
+              ></circle>
+            </svg>
+            <svg
+              class="is-day-only"
+              width="16"
+              height="16"
+              viewBox="0 0 24 24"
+              aria-hidden="true"
+            >
+              <circle cx="12" cy="12" r="7" fill="var(--ember)"></circle>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="site-main" id="main">
+      <section class="section--hero" id="hero" aria-labelledby="hero-title">
+        <h1 class="hero-title" id="hero-title">
+          <span class="line-mask"><span>Lee Elder</span></span>
+        </h1>
+        <p class="hero-subtitle line-mask">
+          <span>Desktop and Web Developer | Glasgow, Scotland</span>
+        </p>
+
+        <div class="button-row">
+          <a class="btn btn--primary" href="content/Lee_Elder_CV_2026.pdf"
+            >Download CV (PDF)</a
+          >
+          <a class="btn" href="https://github.com/energizee" rel="me">GitHub</a>
+          <a class="btn" href="https://www.linkedin.com/in/lee-elder3" rel="me"
+            >LinkedIn</a
+          >
+          <a class="btn" href="mailto:lee.elder1@gmail.com">Email</a>
+        </div>
+
+        <dl class="facts">
+          <div>
+            <dt>Studying</dt>
+            <dd>BSc Computing Science, Strathclyde</dd>
+          </div>
+          <div>
+            <dt>Graduating</dt>
+            <dd>June 2027</dd>
+          </div>
+          <div>
+            <dt>Focus</dt>
+            <dd>Desktop and systems software</dd>
+          </div>
+          <div>
+            <dt>Status</dt>
+            <dd class="is-open">Open to internships and 2027 graduate roles</dd>
+          </div>
+        </dl>
+      </section>
+
+      <section class="section" id="work" aria-labelledby="work-title">
+        <h2 class="section-title" id="work-title" data-reveal>Projects</h2>
+
+        <article class="card card--featured" data-reveal>
+          <h3 class="card-title">Grademap</h3>
+          <p class="card-note">2025 - present | Solo project</p>
+          <p class="card-lede">
+            An academic study companion for desktop and web.
+          </p>
+          <p class="card-body">
+            Standings are calculated against the user's grade classifications
+            and used to give digestible information, and actionable feedback on
+            what to work on next.
+          </p>
+          <ul class="chips">
+            <li>Electron</li>
+            <li>React</li>
+            <li>TypeScript</li>
+            <li>Zustand</li>
+            <li>Supabase</li>
+          </ul>
+          <div class="button-row">
+            <!-- Restore once projects/grademap.html has real content:
+            <a class="btn btn--sm" href="projects/grademap.html"
+              >Read more</a
+            >
+            -->
+            <a class="btn btn--sm" href="https://grademap.net">Check it out!</a>
+          </div>
+        </article>
+
+        <article class="card" data-reveal>
+          <h3 class="card-title">GDGoC Aberdeen Hackathon Project</h3>
+          <p class="card-note">2026 | Solo project</p>
+          <p class="card-body">
+            This was a hackathon I entered solo against teams of up to 3 people,
+            where we were tasked with building a study companion around the
+            open-weight Gemma AI model from Google. I had to plan, design and
+            execute a full AI study companion within 6 hours, then present it.
+          </p>
+          <ul class="chips">
+            <li>AI</li>
+            <li>Hackathon</li>
+            <li>TypeScript</li>
+            <li>React</li>
+          </ul>
+          <div class="button-row">
+            <!-- Restore once projects/hackathon-study.html has real content:
+            <a class="btn btn--sm" href="projects/hackathon-study.html"
+              >Read more</a
+            >
+            -->
+            <a
+              class="btn btn--sm"
+              href="https://github.com/energizee/GDGStudyApp"
+              >View the repo</a
+            >
+          </div>
+        </article>
+
+        <article class="card" data-reveal>
+          <h3 class="card-title">Networked chat with video</h3>
+          <p class="card-note">2026 | Group coursework</p>
+          <p class="card-body">
+            A Java chat client and server made for a university group project.
+            Data transport is chosen per data type: TCP for messages and file
+            transfer, UDP for live webcam frames and video.
+          </p>
+          <ul class="chips">
+            <li>Java</li>
+            <li>TCP/UDP Sockets</li>
+            <li>JavaFX</li>
+          </ul>
+          <!-- Restore once projects/netchat.html has real content:
+          <div class="button-row">
+            <a class="btn btn--sm" href="projects/netchat.html"
+              >Read more</a
+            >
+          </div>
+          -->
+        </article>
+
+        <article class="card" data-reveal>
+          <h3 class="card-title">Simple Shell in C</h3>
+          <p class="card-note">2025 | Group coursework</p>
+          <p class="card-body">
+            A simple UNIX shell made for a university group project. Process
+            control with fork and exec, built-ins, user-defined aliases and a
+            persistent command history.
+          </p>
+          <ul class="chips">
+            <li>C</li>
+            <li>POSIX</li>
+          </ul>
+          <!-- Restore once projects/shell.html has real content:
+          <div class="button-row">
+            <a class="btn btn--sm" href="projects/shell.html"
+              >Read more</a
+            >
+          </div>
+          -->
+        </article>
+      </section>
+
+      <section class="section" id="skills" aria-labelledby="skills-title">
+        <h2 class="section-title" id="skills-title" data-reveal>Skills</h2>
+
+        <div class="skills" data-reveal>
+          <div class="skill-group">
+            <h3 class="eyebrow">Languages</h3>
+            <ul class="chips">
+              <li>Python</li>
+              <li>TypeScript</li>
+              <li>JavaScript</li>
+              <li>Java</li>
+              <li>C</li>
+              <li>C++</li>
+              <li>HTML &amp; CSS</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="eyebrow">Frameworks &amp; libraries</h3>
+            <ul class="chips">
+              <li>React</li>
+              <li>React Native</li>
+              <li>Electron</li>
+              <li>Zustand</li>
+              <li>JavaFX</li>
+            </ul>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="eyebrow">Tools &amp; platforms</h3>
+            <ul class="chips">
+              <li>Git</li>
+              <li>Supabase/PostgreSQL</li>
+              <li>POSIX</li>
+              <li>Unreal Engine 5</li>
+            </ul>
+          </div>
+        </div>
+      </section>
+
+      <section class="section" id="about" aria-labelledby="about-title">
+        <h2 class="section-title" id="about-title" data-reveal>About me</h2>
+        <div class="prose">
+          <section class="about-card" data-reveal>
+            <h3 class="eyebrow">How I started</h3>
+            <p>
+              I have been coding since I was around 8 years old. When I would
+              play games on the PS3 with my dad and brother I would always have
+              so many questions as to how it all worked. One day, probably to
+              stop me asking so many questions, I got given a set of Python
+              coding books and the rest is history!
+            </p>
+          </section>
+
+          <section class="about-card" data-reveal>
+            <h3 class="eyebrow">What I've built</h3>
+            <p>
+              Grademap is my first proper large-scale project, and most of what
+              I know about shipping something real I learned building it. Before
+              that I was making games on Roblox, some solo and some
+              collaborations, which is where I got used to writing code other
+              people would actually use. Since then it's been a mix; a chat app
+              and a text editor in Python, Java and C applications for
+              university, and a handful of websites for coursework and for
+              myself.
+            </p>
+          </section>
+
+          <section class="about-card" data-reveal>
+            <h3 class="eyebrow">Outside of code</h3>
+            <p>
+              Outside of coding, I like to keep both my body and mind active. I
+              enjoy the gym and running, and recently completed a half marathon!
+              I am a huge animal lover, especially cats (as you can tell from
+              this site). I also love music, and have been playing the bass
+              guitar for years now, even performing live at my university.
+            </p>
+          </section>
+
+          <section class="about-card about-card--accent" data-reveal>
+            <h3 class="eyebrow">What I'm looking for</h3>
+            <p>
+              Right now I'm looking for a graduate software engineering role or
+              internship starting summer 2027, ideally somewhere I'd be writing
+              production code early with people who'll review it properly.
+              <span class="highlight">Happy to relocate.</span>
+            </p>
+          </section>
+        </div>
+      </section>
+
+      <section
+        class="section section--contact"
+        id="contact"
+        aria-labelledby="contact-title"
+      >
+        <h2 class="section-title" id="contact-title" data-reveal>
+          Get in touch
+        </h2>
+        <p class="contact-lede" data-reveal>
+          Email is the fastest way to reach me:
+        </p>
+        <p class="contact-email" data-reveal>
+          <a href="mailto:lee.elder1@gmail.com">lee.elder1@gmail.com</a>
+        </p>
+        <div class="button-row" data-reveal>
+          <a class="btn" href="https://github.com/energizee" rel="me"
+            >github.com/energizee</a
+          >
+          <a class="btn" href="https://www.linkedin.com/in/lee-elder3" rel="me"
+            >linkedin.com/in/lee-elder3</a
+          >
+        </div>
+      </section>
+    </main>
+
+    <div class="hills" aria-hidden="true">
+      <svg viewBox="0 0 1440 340" preserveAspectRatio="none">
+        <ellipse
+          cx="300"
+          cy="360"
+          rx="760"
+          ry="250"
+          fill="var(--hill-a)"
+        ></ellipse>
+        <ellipse
+          cx="1180"
+          cy="380"
+          rx="700"
+          ry="240"
+          fill="var(--hill-b)"
+        ></ellipse>
+        <ellipse
+          cx="760"
+          cy="430"
+          rx="900"
+          ry="250"
+          fill="var(--hill-c)"
+        ></ellipse>
+      </svg>
+    </div>
+
+    <!-- Easter-egg theme toggle. Hidden from assistive tech because the header
+     button already exposes the same action. -->
+    <div class="cat-layer" aria-hidden="true">
+      <button
+        class="cat"
+        type="button"
+        data-cat
+        data-theme-toggle
+        tabindex="-1"
+      >
+        <svg viewBox="0 0 200 200" width="150" height="150">
+          <circle
+            cx="100"
+            cy="112"
+            r="52"
+            fill="var(--halo)"
+            opacity=".070"
+          ></circle>
+          <circle
+            cx="100"
+            cy="112"
+            r="66"
+            fill="var(--halo)"
+            opacity=".055"
+          ></circle>
+          <circle
+            cx="100"
+            cy="112"
+            r="80"
+            fill="var(--halo)"
+            opacity=".040"
+          ></circle>
+          <circle
+            cx="100"
+            cy="112"
+            r="94"
+            fill="var(--halo)"
+            opacity=".030"
+          ></circle>
+          <circle
+            cx="100"
+            cy="112"
+            r="108"
+            fill="var(--halo)"
+            opacity=".020"
+          ></circle>
+          <g class="cat-fur">
+            <path
+              class="cat-tail-outer"
+              d="M120 156c26 10 34-12 24-24-7-8-17-3-14 6"
+            ></path>
+            <path
+              class="cat-tail-inner"
+              d="M120 156c26 10 34-12 24-24-7-8-17-3-14 6"
+            ></path>
+            <ellipse cx="100" cy="134" rx="34" ry="32"></ellipse>
+            <polygon
+              class="cat-ear"
+              data-cat-ear
+              points="82,80 74,52 100,68"
+            ></polygon>
+            <polygon points="118,80 126,52 100,68"></polygon>
+            <circle cx="100" cy="92" r="25"></circle>
+          </g>
+          <g class="cat-eyes" data-cat-eyes>
+            <g class="cat-lids" data-cat-lids>
+              <ellipse
+                cx="89"
+                cy="90"
+                rx="5.8"
+                ry="7.6"
+                fill="var(--ember)"
+              ></ellipse>
+              <ellipse
+                cx="111"
+                cy="90"
+                rx="5.8"
+                ry="7.6"
+                fill="var(--ember)"
+              ></ellipse>
+            </g>
+          </g>
+        </svg>
+      </button>
+    </div>
+  </body>
+</html>
