@@ -958,23 +958,10 @@ svg {
   }
 }
 
-/* Below this width the scenery stops being fixed to the viewport and parks at
-   the foot of the page instead — fixed backgrounds judder badly while a phone
-   scrolls. These are positioned against <body>, whose padding box is inset by
-   the gutter, so the insets are pulled back out to reach the screen edges. */
+/* The scenery stays fixed to the viewport at every width, so the hills and the
+   cat behave as a backdrop on a phone exactly as they do on a desktop. Only
+   the cat's size and position change here. */
 @media (max-width: 940px) {
-  .cat-layer {
-    position: absolute;
-    inset: auto calc(var(--gutter) * -1) 0;
-    height: 340px;
-  }
-
-  .hills {
-    position: absolute;
-    left: calc(var(--gutter) * -1);
-    right: calc(var(--gutter) * -1);
-  }
-
   .cat {
     width: 88px;
     height: 88px;
