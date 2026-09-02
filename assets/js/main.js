@@ -1,14 +1,9 @@
-/* Lee Elder — portfolio behaviour.
-   Theme is already applied by the inline bootstrap in <head>; everything here
-   is progressive enhancement and degrades to a fully readable page without it. */
 (() => {
   "use strict";
 
   const root = document.documentElement;
   const reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   const THEME_KEY = "le-theme";
-
-  /* --- Theme ------------------------------------------------------------ */
 
   const readTheme = () => (root.dataset.theme === "day" ? "day" : "night");
 
@@ -32,9 +27,7 @@
     applyTheme(next);
     try {
       localStorage.setItem(THEME_KEY, next);
-    } catch (e) {
-      /* private mode — the choice just won't persist */
-    }
+    } catch (e) {}
   };
 
   applyTheme(readTheme());
@@ -42,22 +35,15 @@
     el.addEventListener("click", toggleTheme);
   });
 
-  /* --- Star field -------------------------------------------------------
-     One star per cell of a jittered grid: the grid keeps coverage even, the
-     jitter stops it looking like graph paper. Driven off a fixed seed so the
-     sky is identical on every visit rather than reshuffling on each reload.
-     ---------------------------------------------------------------------- */
-
   const STARS = {
-    seed: 20270601, // graduation day — any constant would do
+    seed: 20270601,
     columns: 7,
     rows: 3,
-    band: 0.55, // stars occupy the top 55% of the sky; hills own the bottom
-    radius: [2, 3], // px
+    band: 0.55,
+    radius: [2, 3],
     opacity: [0.25, 0.5],
   };
 
-  // mulberry32: small, fast, and good enough for scattering dots.
   const seededRandom = (seed) => () => {
     seed = (seed + 0x6d2b79f5) | 0;
     let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
@@ -76,7 +62,7 @@
     for (let row = 0; row < STARS.rows; row++) {
       for (let col = 0; col < STARS.columns; col++) {
         const star = document.createElementNS(svgNS, "circle");
-        // Percentage coordinates, so the field reflows with the viewport.
+
         star.setAttribute("cx", `${((col + rand()) / STARS.columns) * 100}%`);
         star.setAttribute(
           "cy",
@@ -90,8 +76,6 @@
 
     starField.appendChild(frag);
   }
-
-  /* --- Scroll reveal ---------------------------------------------------- */
 
   const revealables = document.querySelectorAll("[data-reveal]");
 
@@ -118,10 +102,6 @@
     }
   }
 
-  /* --- Nav scroll spy --------------------------------------------------- */
-
-  // Only same-page hash links can be spied on. Project pages link back out to
-  // "../index.html#work", which is not a valid selector and would throw.
   const pairs = Array.from(document.querySelectorAll("[data-nav-link]"))
     .map((link) => {
       const href = link.getAttribute("href") || "";
@@ -143,8 +123,6 @@
         if (pair.section.getBoundingClientRect().top <= 140) current = pair;
       });
 
-      // Near the bottom of the page the last section may never cross the
-      // threshold, so claim it once it is mostly in view.
       if (!current) {
         const last = pairs[pairs.length - 1];
         if (last.section.getBoundingClientRect().bottom < window.innerHeight * 0.5) {
@@ -169,8 +147,6 @@
     update();
   }
 
-  /* --- The cat ---------------------------------------------------------- */
-
   const cat = document.querySelector("[data-cat]");
 
   if (cat && !reduced) {
@@ -178,7 +154,6 @@
     const lids = cat.querySelector("[data-cat-lids]");
     const ear = cat.querySelector("[data-cat-ear]");
 
-    // Blink on a loose interval so it never looks metronomic: 5-11 seconds.
     const blink = () => {
       window.setTimeout(() => {
         if (lids) {
@@ -203,8 +178,6 @@
       }, 240);
     });
 
-    // Eye tracking. The eye group's box is cached and only remeasured on
-    // scroll/resize, so pointer moves never force a layout.
     if (eyes && !window.matchMedia("(hover: none)").matches) {
       let box = null;
       const measure = () => {

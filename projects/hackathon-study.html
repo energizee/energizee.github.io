@@ -1,0 +1,218 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>GDGoC Aberdeen Hackathon — Lee Elder</title>
+    <meta
+      name="description"
+      content="An AI study companion built solo in six hours for the GDGoC Aberdeen hackathon, around Google's open-weight Gemma model. A project write-up by Lee Elder."
+    />
+    <meta name="author" content="Lee Elder" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#120a2a" />
+    <link
+      rel="canonical"
+      href="https://leeelder.dev/projects/hackathon-study.html"
+    />
+
+    <meta property="og:type" content="article" />
+    <meta
+      property="og:url"
+      content="https://leeelder.dev/projects/hackathon-study.html"
+    />
+    <meta property="og:title" content="GDGoC Aberdeen Hackathon — Lee Elder" />
+    <meta
+      property="og:description"
+      content="An AI study companion built solo in six hours around Google's open-weight Gemma model."
+    />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://leeelder.dev/content/image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&amp;family=Manrope:wght@400;500&amp;family=Space+Mono&amp;display=swap"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+
+    <script>
+      (() => {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("le-theme");
+        } catch (e) {}
+        const day = saved
+          ? saved === "day"
+          : window.matchMedia("(prefers-color-scheme: light)").matches;
+        if (day) document.documentElement.dataset.theme = "day";
+      })();
+    </script>
+    <script src="../assets/js/main.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="sky" aria-hidden="true">
+      <svg
+        class="sky-body is-night-only"
+        viewBox="0 0 120 120"
+        width="120"
+        height="120"
+      >
+        <mask id="crescent">
+          <rect width="120" height="120" fill="#fff"></rect>
+          <circle cx="74" cy="46" r="30" fill="#000"></circle>
+        </mask>
+        <circle cx="60" cy="60" r="44" fill="var(--mist)" opacity=".10" mask="url(#crescent)"></circle>
+        <circle cx="60" cy="60" r="36" fill="var(--mist)" opacity=".16" mask="url(#crescent)"></circle>
+        <circle cx="60" cy="60" r="30" fill="var(--starlight)" opacity=".92" mask="url(#crescent)"></circle>
+      </svg>
+      <svg
+        class="sky-body is-day-only"
+        viewBox="0 0 120 120"
+        width="120"
+        height="120"
+      >
+        <circle cx="60" cy="60" r="44" fill="var(--ember)" opacity=".10"></circle>
+        <circle cx="60" cy="60" r="35" fill="var(--ember)" opacity=".18"></circle>
+        <circle cx="60" cy="60" r="27" fill="var(--ember)" opacity=".95"></circle>
+      </svg>
+
+      <svg class="stars" data-stars></svg>
+    </div>
+
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Primary">
+        <div class="nav-pill">
+          <a class="nav-link" href="../index.html">Home</a>
+          <a class="nav-link" href="../index.html#work">Projects</a>
+          <a class="nav-link" href="../index.html#skills">Skills</a>
+          <a class="nav-link" href="../index.html#about">About</a>
+          <a class="nav-link" href="../index.html#contact">Contact</a>
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Switch to day mode"
+            title="Switch to day mode"
+          >
+            <svg class="is-night-only" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+              <mask id="navmoon">
+                <rect width="24" height="24" fill="#fff"></rect>
+                <circle cx="16.5" cy="8" r="7.5" fill="#000"></circle>
+              </mask>
+              <circle cx="12" cy="12" r="8" fill="var(--starlight)" mask="url(#navmoon)"></circle>
+            </svg>
+            <svg class="is-day-only" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="7" fill="var(--ember)"></circle>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="site-main detail-main" id="main">
+      <a class="back-link" href="../index.html#work">
+        <span class="back-arrow" aria-hidden="true">←</span> Back to projects
+      </a>
+
+      <header>
+        <h1 class="detail-title">GDGoC Aberdeen Hackathon Project</h1>
+        <p class="card-note">2026 | Solo project</p>
+        <p class="detail-lede">
+          An AI study companion built solo in six hours, against teams of up to
+          three.
+        </p>
+        <ul class="chips">
+          <li>AI</li>
+          <li>Hackathon</li>
+          <li>TypeScript</li>
+          <li>React</li>
+        </ul>
+        <div class="button-row">
+          <a class="btn btn--sm" href="https://github.com/energizee/GDGStudyApp"
+            >View the repo<span class="btn-arrow" aria-hidden="true">→</span></a
+          >
+        </div>
+      </header>
+
+      <section class="detail-section" data-reveal>
+        <h2>The brief</h2>
+        <p class="placeholder">
+          We were tasked with creating an application centered around Google's open-weight Gemma models within a 6 hour period. The main brief was to create a study companion that actually helped users study through actions and not just display information. The 1st place prize was $500, and I was up against teams of 2-3 people as a solo entrant, so I had to be very careful with my time and scope to ensure I could deliver a working product in the time frame.
+        </p>
+      </section>
+
+      <section class="detail-section" data-reveal>
+        <h2>What I built</h2>
+        <p class="placeholder">
+          The app I built was a personalised study companion called Momentum that was focused around actionable feedback rather than just displaing information. Gemma was the core here by holding a live updating personal profile on the user based on their data, and then providing actionable feedback such as study plans with specifcally generated questions that were automatically marked by Gemma.
+        </p>
+      </section>
+
+      <section class="detail-section" data-reveal>
+        <h2>How it works</h2>
+        <p class="placeholder">
+          How you wired Gemma in, what runs where, and what the React front end
+          is doing. Worth being specific about how you handled the model given
+          it is open-weight rather than a hosted API.
+        </p>
+      </section>
+
+      <section class="detail-section" data-reveal>
+        <h2>Working to the clock</h2>
+        <p class="placeholder">
+          What you cut to ship on time, and what you protected. Deliberate
+          scoping under pressure is exactly the skill a hackathon demonstrates,
+          so say what you chose to leave out and why.
+        </p>
+      </section>
+
+      <section class="detail-section" data-reveal>
+        <h2>What I would do with more time</h2>
+        <p class="placeholder">
+          The roadmap you would follow if this became a real project, and
+          anything the judges pulled you up on.
+        </p>
+      </section>
+    </main>
+
+    <div class="hills" aria-hidden="true">
+      <svg viewBox="0 0 1440 340" preserveAspectRatio="none">
+        <ellipse cx="300" cy="360" rx="760" ry="250" fill="var(--hill-a)"></ellipse>
+        <ellipse cx="1180" cy="380" rx="700" ry="240" fill="var(--hill-b)"></ellipse>
+        <ellipse cx="760" cy="430" rx="900" ry="250" fill="var(--hill-c)"></ellipse>
+      </svg>
+    </div>
+    <div class="cat-layer" aria-hidden="true">
+      <button class="cat" type="button" data-cat data-theme-toggle tabindex="-1">
+        <svg viewBox="0 0 200 200" width="150" height="150">
+          <circle cx="100" cy="112" r="52"  fill="var(--halo)" opacity=".070"></circle>
+          <circle cx="100" cy="112" r="66"  fill="var(--halo)" opacity=".055"></circle>
+          <circle cx="100" cy="112" r="80"  fill="var(--halo)" opacity=".040"></circle>
+          <circle cx="100" cy="112" r="94"  fill="var(--halo)" opacity=".030"></circle>
+          <circle cx="100" cy="112" r="108" fill="var(--halo)" opacity=".020"></circle>
+          <g class="cat-fur">
+            <path class="cat-tail-outer" d="M120 156c26 10 34-12 24-24-7-8-17-3-14 6"></path>
+            <path class="cat-tail-inner" d="M120 156c26 10 34-12 24-24-7-8-17-3-14 6"></path>
+            <ellipse cx="100" cy="134" rx="34" ry="32"></ellipse>
+            <polygon class="cat-ear" data-cat-ear points="82,80 74,52 100,68"></polygon>
+            <polygon points="118,80 126,52 100,68"></polygon>
+            <circle cx="100" cy="92" r="25"></circle>
+          </g>
+          <g class="cat-eyes" data-cat-eyes>
+            <g class="cat-lids" data-cat-lids>
+              <ellipse cx="89"  cy="90" rx="5.8" ry="7.6" fill="var(--ember)"></ellipse>
+              <ellipse cx="111" cy="90" rx="5.8" ry="7.6" fill="var(--ember)"></ellipse>
+            </g>
+          </g>
+        </svg>
+      </button>
+    </div>
+  </body>
+</html>

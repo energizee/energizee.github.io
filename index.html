@@ -47,7 +47,6 @@
     <link rel="stylesheet" href="assets/css/style.css" />
 
     <script>
-      /* Set the theme before first paint so there is no flash of the wrong palette. */
       (() => {
         let saved = null;
         try {
@@ -65,7 +64,6 @@
   <body>
     <a class="skip-link" href="#main">Skip to content</a>
 
-    <!-- Sky: moon or sun, star field, sparkles. Decorative only. -->
     <div class="sky" aria-hidden="true">
       <svg
         class="sky-body is-night-only"
@@ -131,8 +129,6 @@
         ></circle>
       </svg>
 
-      <!-- Populated by main.js from a fixed seed. Decorative, so no JS means no
-       stars and nothing else is affected. -->
       <svg class="stars" data-stars></svg>
 
       <svg class="sprite" width="0" height="0">
@@ -258,11 +254,7 @@
             <li>Supabase</li>
           </ul>
           <div class="button-row">
-            <!-- Restore once projects/grademap.html has real content:
-            <a class="btn btn--sm" href="projects/grademap.html"
-              >Read more</a
-            >
-            -->
+            <a class="btn btn--sm" href="projects/grademap.html">Read more</a>
             <a class="btn btn--sm" href="https://grademap.net">Check it out!</a>
           </div>
         </article>
@@ -283,11 +275,6 @@
             <li>React</li>
           </ul>
           <div class="button-row">
-            <!-- Restore once projects/hackathon-study.html has real content:
-            <a class="btn btn--sm" href="projects/hackathon-study.html"
-              >Read more</a
-            >
-            -->
             <a
               class="btn btn--sm"
               href="https://github.com/energizee/GDGStudyApp"
@@ -309,13 +296,6 @@
             <li>TCP/UDP Sockets</li>
             <li>JavaFX</li>
           </ul>
-          <!-- Restore once projects/netchat.html has real content:
-          <div class="button-row">
-            <a class="btn btn--sm" href="projects/netchat.html"
-              >Read more</a
-            >
-          </div>
-          -->
         </article>
 
         <article class="card" data-reveal>
@@ -330,13 +310,6 @@
             <li>C</li>
             <li>POSIX</li>
           </ul>
-          <!-- Restore once projects/shell.html has real content:
-          <div class="button-row">
-            <a class="btn btn--sm" href="projects/shell.html"
-              >Read more</a
-            >
-          </div>
-          -->
         </article>
       </section>
 
@@ -482,8 +455,6 @@
       </svg>
     </div>
 
-    <!-- Easter-egg theme toggle. Hidden from assistive tech because the header
-     button already exposes the same action. -->
     <div class="cat-layer" aria-hidden="true">
       <button
         class="cat"

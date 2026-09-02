@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>Grademap — Lee Elder</title>
+    <meta
+      name="description"
+      content="Grademap, an academic study companion for desktop and web built with Electron, React and TypeScript. A project write-up by Lee Elder."
+    />
+    <meta name="author" content="Lee Elder" />
+    <meta name="robots" content="noindex" />
+    <meta name="theme-color" content="#120a2a" />
+    <link rel="canonical" href="https://leeelder.dev/projects/grademap.html" />
+
+    <meta property="og:type" content="article" />
+    <meta property="og:url" content="https://leeelder.dev/projects/grademap.html" />
+    <meta property="og:title" content="Grademap - Lee Elder" />
+    <meta
+      property="og:description"
+      content="An academic study companion for desktop and web, built with Electron, React and TypeScript."
+    />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://leeelder.dev/content/image.png" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="../assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      rel="stylesheet"
+      href="https://fonts.googleapis.com/css2?family=Sora:wght@500;600&amp;family=Manrope:wght@400;500&amp;family=Space+Mono&amp;display=swap"
+    />
+    <link rel="stylesheet" href="../assets/css/style.css" />
+
+    <script>
+      (() => {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("le-theme");
+        } catch (e) {}
+        const day = saved
+          ? saved === "day"
+          : window.matchMedia("(prefers-color-scheme: light)").matches;
+        if (day) document.documentElement.dataset.theme = "day";
+      })();
+    </script>
+    <script src="../assets/js/main.js" defer></script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+
+    <div class="sky" aria-hidden="true">
+      <svg
+        class="sky-body is-night-only"
+        viewBox="0 0 120 120"
+        width="120"
+        height="120"
+      >
+        <mask id="crescent">
+          <rect width="120" height="120" fill="#fff"></rect>
+          <circle cx="74" cy="46" r="30" fill="#000"></circle>
+        </mask>
+        <circle cx="60" cy="60" r="44" fill="var(--mist)" opacity=".10" mask="url(#crescent)"></circle>
+        <circle cx="60" cy="60" r="36" fill="var(--mist)" opacity=".16" mask="url(#crescent)"></circle>
+        <circle cx="60" cy="60" r="30" fill="var(--starlight)" opacity=".92" mask="url(#crescent)"></circle>
+      </svg>
+      <svg
+        class="sky-body is-day-only"
+        viewBox="0 0 120 120"
+        width="120"
+        height="120"
+      >
+        <circle cx="60" cy="60" r="44" fill="var(--ember)" opacity=".10"></circle>
+        <circle cx="60" cy="60" r="35" fill="var(--ember)" opacity=".18"></circle>
+        <circle cx="60" cy="60" r="27" fill="var(--ember)" opacity=".95"></circle>
+      </svg>
+
+      <svg class="stars" data-stars></svg>
+    </div>
+
+    <header class="site-header">
+      <nav class="site-nav" aria-label="Primary">
+        <div class="nav-pill">
+          <a class="nav-link" href="../index.html">Home</a>
+          <a class="nav-link" href="../index.html#work">Projects</a>
+          <a class="nav-link" href="../index.html#skills">Skills</a>
+          <a class="nav-link" href="../index.html#about">About</a>
+          <a class="nav-link" href="../index.html#contact">Contact</a>
+          <button
+            class="theme-toggle"
+            type="button"
+            data-theme-toggle
+            aria-label="Switch to day mode"
+            title="Switch to day mode"
+          >
+            <svg class="is-night-only" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+              <mask id="navmoon">
+                <rect width="24" height="24" fill="#fff"></rect>
+                <circle cx="16.5" cy="8" r="7.5" fill="#000"></circle>
+              </mask>
+              <circle cx="12" cy="12" r="8" fill="var(--starlight)" mask="url(#navmoon)"></circle>
+            </svg>
+            <svg class="is-day-only" width="16" height="16" viewBox="0 0 24 24" aria-hidden="true">
+              <circle cx="12" cy="12" r="7" fill="var(--ember)"></circle>
+            </svg>
+          </button>
+        </div>
+      </nav>
+    </header>
+
+    <main class="site-main detail-main" id="main">
+      <a class="back-link" href="../index.html#work">
+        <span class="back-arrow" aria-hidden="true">←</span> Back to projects
+      </a>
+
+      <header>
+        <h1 class="detail-title">Grademap</h1>
+        <p class="card-note">2025 - present | Solo project</p>
+        <p class="detail-lede">
+          An academic study companion for desktop and web.
+        </p>
+        <ul class="chips">
+          <li>Electron</li>
+          <li>React</li>
+          <li>TypeScript</li>
+          <li>Zustand</li>
+          <li>Supabase</li>
+        </ul>
+        <div class="button-row">
+          <a class="btn btn--sm" href="https://grademap.net">Check it out!</a>
+        </div>
+      </header>
+
+      <section class="detail-section" data-reveal>
+        <h2>Overview</h2>
+        <p class="placeholder">
+          Grademap is a study companion app designed to show students exactly where they stand in their academic journey, and tells them what they need to do to hit their targets. It crunches the numbers for you, structures your data in a way that supports your studies, and gives you real actionable plans.
+        </p>
+      </section>
+
+      <section class="detail-section" data-reveal>
+        <h2>Why I built it</h2>
+        <p class="placeholder">
+          I got the idea when I was with my friends on my course, and we were stressing out trying to figure out what our overall grade was after a hard lab. It was super tough, especially after spending all our brainpower actually doing the work. So, I got the idea of making an app that does the math for you and breaks it down for you to show you exactly where you stand and what you need. From there, I wrapped that core up in helpful utilities and features, and now we have Grademap!
+        </p>
+      </section>
+
+      <section class="detail-section" data-reveal>
+        <h2>How it works</h2>
+        <p class="placeholder">
+          This is a React app, designed to run on both the web and as an Electron desktop app. Zustand is used for state management, and Supabase is a convenient choice for both the database and the backend at the same time. This is a super simple stack to work with, which helped me lots with development as this is my first large project like this!
+        </p>
+        <h2>Why I chose this stack</h2>
+        <p class="placeholder">
+          I chose to make it in React as webapps are a good universal option for both desktop and mobile users. It also meant I could port to desktop native easily without having to rewrite the codebase, and even opens options for an easier port to mobile with React Native in the future. Zustand was just a super simple state management library that I found easy to pick up, and runs very light compared to Redux with a nice hook-based and architecture that fit my existing knowledge. I chose Supabase as it is a very simple and easy to use backend and database solution, with a very generous free tier. I am also familiar with PostgreSQL so this made things easier.
+        </p>
+      </section>
+
+      <section class="detail-section" data-reveal>
+        <h2>Problems I hit</h2>
+        <p class="placeholder">
+          My main issue with this was designing a user interface. In the world of AI, proper design and UI/UX is more important than ever, as it requires a mix of both creative vision and real understanding of how people interact with computers. I had to go through so many revisions and do so much research to land on a good design system and UI/UX flow. I made an entire v1 of this app initially without this insight, but when it came to real testing I quickly found out that my knowledge was lacking, and was forced to do an entire rebuild of the structure and flow of the app.
+        </p>
+      </section>
+
+      <section class="detail-section" data-reveal>
+        <h2>What I would do differently</h2>
+        <p class="placeholder">
+          In hindsight, I definitely shouldve set up a proper dev workflow from the start, and spent a good amount of time at the start designing a full project spec and making sure the idea and feature set was solid and didnt shift. I spent so much time working with half ideas and developing in the dark, which just led to more and more rewrites. I was also a very big perfectionist, which for a first time project with no real public testing under my belt, was a recipe for distaster. In the future I will ensure solid product docs are in place, and prioritise real user feedback for refining my work.
+        </p>
+      </section>
+    </main>
+
+    <div class="hills" aria-hidden="true">
+      <svg viewBox="0 0 1440 340" preserveAspectRatio="none">
+        <ellipse cx="300" cy="360" rx="760" ry="250" fill="var(--hill-a)"></ellipse>
+        <ellipse cx="1180" cy="380" rx="700" ry="240" fill="var(--hill-b)"></ellipse>
+        <ellipse cx="760" cy="430" rx="900" ry="250" fill="var(--hill-c)"></ellipse>
+      </svg>
+    </div>
+    <div class="cat-layer" aria-hidden="true">
+      <button class="cat" type="button" data-cat data-theme-toggle tabindex="-1">
+        <svg viewBox="0 0 200 200" width="150" height="150">
+          <circle cx="100" cy="112" r="52"  fill="var(--halo)" opacity=".070"></circle>
+          <circle cx="100" cy="112" r="66"  fill="var(--halo)" opacity=".055"></circle>
+          <circle cx="100" cy="112" r="80"  fill="var(--halo)" opacity=".040"></circle>
+          <circle cx="100" cy="112" r="94"  fill="var(--halo)" opacity=".030"></circle>
+          <circle cx="100" cy="112" r="108" fill="var(--halo)" opacity=".020"></circle>
+          <g class="cat-fur">
+            <path class="cat-tail-outer" d="M120 156c26 10 34-12 24-24-7-8-17-3-14 6"></path>
+            <path class="cat-tail-inner" d="M120 156c26 10 34-12 24-24-7-8-17-3-14 6"></path>
+            <ellipse cx="100" cy="134" rx="34" ry="32"></ellipse>
+            <polygon class="cat-ear" data-cat-ear points="82,80 74,52 100,68"></polygon>
+            <polygon points="118,80 126,52 100,68"></polygon>
+            <circle cx="100" cy="92" r="25"></circle>
+          </g>
+          <g class="cat-eyes" data-cat-eyes>
+            <g class="cat-lids" data-cat-lids>
+              <ellipse cx="89"  cy="90" rx="5.8" ry="7.6" fill="var(--ember)"></ellipse>
+              <ellipse cx="111" cy="90" rx="5.8" ry="7.6" fill="var(--ember)"></ellipse>
+            </g>
+          </g>
+        </svg>
+      </button>
+    </div>
+  </body>
+</html>
