@@ -620,6 +620,35 @@ svg {
   margin: 0;
 }
 
+.skill-line {
+  margin: 0;
+  color: var(--mist);
+  font-size: 15px;
+  line-height: 1.7;
+}
+
+.roles {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.role {
+  background: var(--panel);
+  border: 0.5px solid var(--panel-edge);
+  border-radius: 12px;
+  padding: 24px 28px;
+}
+
+.role-title {
+  font-size: 18px;
+  margin: 0 0 8px;
+}
+
+.role .card-body {
+  margin: 0;
+}
+
 .highlight {
   color: var(--ember);
 }
@@ -969,6 +998,10 @@ svg {
 }
 
 @media (max-width: 640px) {
+  .role {
+    padding: 22px;
+  }
+
   .hero-title {
     font-size: 40px;
   }

@@ -5,11 +5,14 @@
     <changefreq>monthly</changefreq>
     <priority>1.0</priority>
   </url>
-  <!-- Project pages are still placeholders. Add them back, and drop the
-       noindex tag from each, once they have real content:
-  <url><loc>https://leeelder.dev/projects/grademap.html</loc></url>
-  <url><loc>https://leeelder.dev/projects/hackathon-study.html</loc></url>
-  <url><loc>https://leeelder.dev/projects/netchat.html</loc></url>
-  <url><loc>https://leeelder.dev/projects/shell.html</loc></url>
-  -->
+  <url>
+    <loc>https://leeelder.dev/projects/grademap.html</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://leeelder.dev/projects/momentum.html</loc>
+    <changefreq>yearly</changefreq>
+    <priority>0.6</priority>
+  </url>
 </urlset>

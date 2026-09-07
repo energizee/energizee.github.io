@@ -3,21 +3,27 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>Grademap — Lee Elder</title>
+    <title>Momentum — Lee Elder</title>
     <meta
       name="description"
-      content="Grademap, a grade tracker and academic planner built on Postgres, Supabase row-level security and a GitHub Actions pipeline. A project write-up by Lee Elder."
+      content="Momentum, an AI study companion built solo in six hours around Gemma, Google’s open-weight model. A project write-up by Lee Elder."
     />
     <meta name="author" content="Lee Elder" />
     <meta name="theme-color" content="#120a2a" />
-    <link rel="canonical" href="https://leeelder.dev/projects/grademap.html" />
+    <link
+      rel="canonical"
+      href="https://leeelder.dev/projects/momentum.html"
+    />
 
     <meta property="og:type" content="article" />
-    <meta property="og:url" content="https://leeelder.dev/projects/grademap.html" />
-    <meta property="og:title" content="Grademap - Lee Elder" />
+    <meta
+      property="og:url"
+      content="https://leeelder.dev/projects/momentum.html"
+    />
+    <meta property="og:title" content="Momentum - Lee Elder" />
     <meta
       property="og:description"
-      content="A grade tracker and academic planner, built to stay honest when the data is incomplete."
+      content="An AI study companion built solo in six hours, against teams of up to three."
     />
     <meta property="og:locale" content="en_GB" />
     <meta property="og:image" content="https://leeelder.dev/content/image.png" />
@@ -116,154 +122,145 @@
       </a>
 
       <header>
-        <h1 class="detail-title">Grademap</h1>
-        <p class="card-note">2025 - present | Solo project</p>
+        <h1 class="detail-title">Momentum</h1>
+        <p class="card-note">
+          2026 | Solo hackathon entry, GDG on Campus Aberdeen
+        </p>
         <p class="detail-lede">
-          An academic study companion for desktop and web.
+          An AI study companion built solo in six hours, against teams of up to
+          three.
         </p>
         <ul class="chips">
           <li>TypeScript</li>
-          <li>PostgreSQL</li>
-          <li>Supabase</li>
-          <li>GitHub Actions</li>
-          <li>React</li>
-          <li>Electron</li>
-          <li>Zustand</li>
+          <li>Next.js</li>
+          <li>API routes</li>
+          <li>Gemma</li>
+          <li>Vercel</li>
         </ul>
         <div class="button-row">
-          <a class="btn btn--sm" href="https://grademap.net">Check it out!</a>
+          <a class="btn btn--sm" href="https://github.com/energizee/GDGStudyApp"
+            >View the repo<span class="btn-arrow" aria-hidden="true">→</span></a
+          >
         </div>
       </header>
 
       <section class="detail-section" data-reveal>
-        <h2>Overview</h2>
+        <h2>The brief</h2>
         <p>
-          Grademap is a study companion app designed to show students exactly
-          where they stand in their academic journey, and tells them what they
-          need to do to hit their targets. It crunches the numbers for you,
-          structures your data in a way that supports your studies, and gives
-          you real actionable plans.
+          We were tasked with building an application around Gemma, Google's
+          open-weight model, within a 6 hour window. The brief was that it had
+          to be a study companion that actually helped you study by doing
+          things, not just one that displays information back at you. First
+          place was $500, and I was in as a solo entrant against teams of 2-3
+          people, so being careful with my scope mattered more than anything
+          else I did that day.
         </p>
       </section>
 
       <section class="detail-section" data-reveal>
-        <h2>Why I built it</h2>
+        <h2>What I built</h2>
         <p>
-          I got the idea when I was with my friends on my course, and we were
-          stressing out trying to figure out what our overall grade was after a
-          hard lab. It was super tough, especially after spending all our
-          brainpower actually doing the work. So, I got the idea of making an
-          app that does the math for you and breaks it down for you to show you
-          exactly where you stand and what you need. From there, I wrapped that
-          core up in helpful utilities and features, and now we have Grademap!
+          Momentum keeps a live profile of you as a learner, so what you know,
+          what you keep putting off, and what is coming up due, then turns that
+          into an actual plan. It makes study sessions with a set mode and a
+          first step small enough that you will actually start it, writes
+          practice questions, marks your answers, and shuffles your schedule
+          around when you keep skipping the same session. You can also point it
+          at a photo of your syllabus or a past paper to set it up, and it will
+          mark a photo of your handwritten work.
         </p>
       </section>
 
       <section class="detail-section" data-reveal>
-        <h2>Keeping the numbers honest</h2>
+        <h2>One route, ten jobs</h2>
         <p>
-          The hard part of this was dealing with the fact that marks come in slowly across a
-          semester, so most of the time your data is incomplete. If you just
-          treat anything unmarked as a zero, the app will happily tell someone
-          they are failing when the truth is they haven't sat anything yet, and
-          that is a horrible thing to show a student who is already stressed
-          about their degree.
+          Every single call to the model goes through one API route on the
+          server. Ten different tasks run through it, so triage, planning,
+          quizzing, marking, profiling, schedule changes, unblocking and pulling
+          data out of documents, and nothing else in the app is allowed to talk
+          to Google directly.
         </p>
         <p>
-          So the engine has to keep three things separate that are really easy
-          to lump together: work you did badly in, work that hasn't been marked
-          yet, and work that doesn't exist at all. Then it weighs everything up
-          against your classification boundaries before it says anything.
-        </p>
-      </section>
-
-      <section class="detail-section" data-reveal>
-        <h2>Keeping everyone's data separate</h2>
-        <p>
-          Grades are about as personal as student data gets, so this wasn't
-          something I wanted to leave until later. Auth goes through Supabase,
-          and every table sits behind row level security policies in Postgres.
-          That means access is enforced by the database itself rather than
-          trusted to the app, so even if I write a bug in the frontend it can't
-          turn into someone reading another person's grades.
+          Part of that is just security, as the API key lives on the server and
+          never ends up in the browser bundle. The other part is that caching,
+          timeouts, fallbacks and validation apply to every single call, so
+          having one door meant I got to write each of those once instead of ten
+          times.
         </p>
       </section>
 
       <section class="detail-section" data-reveal>
-        <h2>What runs on the server</h2>
+        <h2>Not trusting anything the model says</h2>
         <p>
-          Anything that needs a key, or needs to be the same for everyone, runs
-          on the server. The AI chat and study features go through Supabase edge
-          functions, and there are database triggers and functions handling the
-          bits of work that make more sense sitting next to the data than in the
-          app.
+          This is the bit I would defend hardest. A model is just a remote
+          service handing you back data you have not validated, and the fact
+          that it comes back as convincing English makes it more dangerous to
+          trust. Nothing Gemma gives me reaches app state without
+          being checked first.
+        </p>
+        <p>
+          Mastery changes get clamped to a sensible range, session lengths get
+          clamped between 5 and 90 minutes, study modes get checked against a
+          real enum, and any session the model refers to gets checked against
+          sessions that actually exist and are still open. Gemma can also change
+          the schedule itself through tool calls, so it can split a session,
+          reschedule it, change its mode or drop it, and every one of those gets
+          validated against real IDs, real values and dates that are not in the
+          past before it gets applied. This was not me being paranoid either.
+          While testing, the model dropped a required ID once and made up a
+          study mode once.
+        </p>
+        <p>
+          Structured output is not documented for Gemma on this API, so I could
+          not just ask for a response that matches a schema. Instead I ask for
+          JSON and parse it defensively, with a scan that counts brackets and
+          tracks whether it is currently inside a string, so markdown fences,
+          waffle before the JSON and commentary after it do not break anything.
+          If it still fails to parse, the broken output goes back to the model
+          once at temperature zero on a short timer to get fixed, which is
+          cheaper and works better than failing the whole request.
         </p>
       </section>
 
       <section class="detail-section" data-reveal>
-        <h2>Shipping it</h2>
+        <h2>Making it fast enough to demo</h2>
         <p>
-          Releases go out through GitHub Actions. Every change gets typechecked,
-          linted, tested and built, and then it checks that my row level
-          security policies haven't regressed. That last one is the check I care
-          about most. Access rules are the kind of thing that quietly loosen
-          when you refactor, and you will never catch that by clicking around
-          the app, so I treat it like any other test.
+          Two things I measured ended up shaping the whole app. The first is
+          that Gemma thinks before it answers, and those thinking tokens come
+          out of the same budget as the output. Left on the default the model
+          spent its entire allowance thinking and handed me back an empty
+          string. I measured 147 thinking tokens and zero output tokens on a
+          request that shouldve just returned one sentence. Turning the thinking
+          budget right down took that same call from 5.0s to 1.4s, which is what
+          kept the big planning calls inside the 60 second serverless limit.
+        </p>
+        <p>
+          The second is that the SDK has no default timeout, so a stalled
+          connection just hangs until the OS gives up on it. I watched one run
+          for 352 seconds against a function limit of 60. Now every call has its
+          own deadline and falls back to a lower latency variant of the model if
+          the first one dies, but deliberately not if it is only being slow.
+        </p>
+        <p>
+          Repeat calls get soaked up by two layers of caching. There is a
+          fingerprint on the client that only covers the state the model
+          actually reasons about, so changing a course colour does not throw the
+          answer away but finishing a session does, and behind that a small
+          capped in-memory cache with a 15 minute expiry. In a live demo,
+          clicking back and forward would otherwise burn through quota working
+          out answers that cannot possibly have changed.
         </p>
       </section>
 
       <section class="detail-section" data-reveal>
-        <h2>How it works</h2>
+        <h2>What the model does not get to decide</h2>
         <p>
-          This is a React app, designed to run on both the web and as an
-          Electron desktop app. Zustand is used for state management, and
-          Supabase is a convenient choice for both the database and the backend
-          at the same time. This is a super simple stack to work with, which
-          helped me lots with development as this is my first large project like
-          this!
-        </p>
-        <h2>Why I chose this stack</h2>
-        <p>
-          I chose to make it in React as webapps are a good universal option for
-          both desktop and mobile users. It also meant I could port to desktop
-          native easily without having to rewrite the codebase, and even opens
-          options for an easier port to mobile with React Native in the future.
-          Zustand was just a super simple state management library that I found
-          easy to pick up, and runs very light compared to Redux with a nice
-          hook-based architecture that fit my existing knowledge. I chose
-          Supabase as it is a very simple and easy to use database
-          solution, with a very generous free tier. I am also familiar with
-          PostgreSQL so this made things easier.
-        </p>
-      </section>
-
-      <section class="detail-section" data-reveal>
-        <h2>Problems I hit</h2>
-        <p>
-          My main issue with this was designing a user interface. In the world
-          of AI, proper design and UI/UX is more important than ever, as it
-          requires a mix of both creative vision and real understanding of how
-          people interact with computers. I had to go through so many revisions
-          and do so much research to land on a good design system and UI/UX
-          flow. I made an entire v1 of this app initially without this insight,
-          but when it came to real testing I quickly found out that my knowledge
-          was lacking, and was forced to do an entire rebuild of the structure
-          and flow of the app.
-        </p>
-      </section>
-
-      <section class="detail-section" data-reveal>
-        <h2>What I would do differently</h2>
-        <p>
-          In hindsight, I definitely should've set up a proper dev workflow from
-          the start, and spent a good amount of time at the start designing a
-          full project spec and making sure the idea and feature set was solid
-          and didn't shift. I spent so much time working with half ideas and
-          developing in the dark, which just led to more and more rewrites. I
-          was also a very big perfectionist, which for a first time project with
-          no real public testing under my belt, was a recipe for disaster. In
-          the future I will ensure solid product docs are in place, and
-          prioritise real user feedback for refining my work.
+          Grade projections and stakes are plain arithmetic, and that is
+          deliberate. If you ask what you need on the final you deserve the same
+          answer twice, and you deserve to be able to check it yourself. Gemma
+          reasons about those numbers but it never changes them. Working out
+          which parts of the product should not touch the model at all was
+          probably the most useful call I made under that time pressure.
         </p>
       </section>
 

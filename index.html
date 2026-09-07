@@ -6,7 +6,7 @@
     <title>Lee Elder's Portfolio</title>
     <meta
       name="description"
-      content="Lee Elder, a desktop and web developer in Glasgow, Scotland. BSc Computing Science at Strathclyde, graduating June 2027 and open to graduate roles."
+      content="Lee Elder, a full-stack engineer in Glasgow, Scotland working across backend, Postgres and CI. BSc Computing Science at Strathclyde, graduating June 2027 and open to graduate roles."
     />
     <meta name="author" content="Lee Elder" />
     <meta name="theme-color" content="#120a2a" />
@@ -17,7 +17,7 @@
     <meta property="og:title" content="Lee Elder's Portfolio" />
     <meta
       property="og:description"
-      content="Desktop and web developer in Glasgow, Scotland. BSc Computing Science at Strathclyde, graduating June 2027."
+      content="Full-stack engineer in Glasgow, Scotland. BSc Computing Science at Strathclyde, graduating June 2027."
     />
     <meta property="og:locale" content="en_GB" />
     <meta
@@ -28,7 +28,7 @@
     <meta property="og:image:height" content="765" />
     <meta
       property="og:image:alt"
-      content="Lee Elder's portfolio site — a night sky over rolling hills."
+      content="Lee Elder's portfolio site, showing a purple cat on a hill with a starry night sky"
     />
     <meta name="twitter:card" content="summary_large_image" />
 
@@ -150,6 +150,7 @@
           <a class="nav-link" data-nav-link href="#hero">Home</a>
           <a class="nav-link" data-nav-link href="#work">Projects</a>
           <a class="nav-link" data-nav-link href="#skills">Skills</a>
+          <a class="nav-link" data-nav-link href="#experience">Experience</a>
           <a class="nav-link" data-nav-link href="#about">About</a>
           <a class="nav-link" data-nav-link href="#contact">Contact</a>
           <button
@@ -198,7 +199,7 @@
           <span class="line-mask"><span>Lee Elder</span></span>
         </h1>
         <p class="hero-subtitle line-mask">
-          <span>Desktop and Web Developer | Glasgow, Scotland</span>
+          <span>Full-Stack Engineer | Glasgow, Scotland</span>
         </p>
 
         <div class="button-row">
@@ -215,7 +216,7 @@
         <dl class="facts">
           <div>
             <dt>Studying</dt>
-            <dd>BSc Computing Science, Strathclyde</dd>
+            <dd>BSc (Hons) Computing Science, Strathclyde</dd>
           </div>
           <div>
             <dt>Graduating</dt>
@@ -223,11 +224,11 @@
           </div>
           <div>
             <dt>Focus</dt>
-            <dd>Desktop and systems software</dd>
+            <dd>Backend, APIs and data</dd>
           </div>
           <div>
             <dt>Status</dt>
-            <dd class="is-open">Open to internships and 2027 graduate roles</dd>
+            <dd class="is-open">Open to 2027 graduate roles</dd>
           </div>
         </dl>
       </section>
@@ -242,16 +243,15 @@
             An academic study companion for desktop and web.
           </p>
           <p class="card-body">
-            Standings are calculated against the user's grade classifications
-            and used to give digestible information, and actionable feedback on
-            what to work on next.
+            Grademap is a study companion app designed to show students exactly where they stand in their academic journey, and tells them what they need to do to hit their targets. It uses a grade engine to calculate the minimum grades required to hit a target, and turns this data into a list of actionable tasks.
           </p>
           <ul class="chips">
-            <li>Electron</li>
-            <li>React</li>
             <li>TypeScript</li>
-            <li>Zustand</li>
+            <li>PostgreSQL</li>
             <li>Supabase</li>
+            <li>GitHub Actions</li>
+            <li>React</li>
+            <li>Electron</li>
           </ul>
           <div class="button-row">
             <a class="btn btn--sm" href="projects/grademap.html">Read more</a>
@@ -260,21 +260,24 @@
         </article>
 
         <article class="card" data-reveal>
-          <h3 class="card-title">GDGoC Aberdeen Hackathon Project</h3>
-          <p class="card-note">2026 | Solo project</p>
+          <h3 class="card-title">Momentum</h3>
+          <p class="card-note">
+            2026 | Solo hackathon, GDG on Campus Aberdeen
+          </p>
           <p class="card-body">
             This was a hackathon I entered solo against teams of up to 3 people,
             where we were tasked with building a study companion around the
-            open-weight Gemma AI model from Google. I had to plan, design and
-            execute a full AI study companion within 6 hours, then present it.
+            open-weight Gemma model from Google. I had to plan, design and build
+            the whole thing within 6 hours, then present it. 
           </p>
           <ul class="chips">
-            <li>AI</li>
-            <li>Hackathon</li>
             <li>TypeScript</li>
-            <li>React</li>
+            <li>Next.js</li>
+            <li>API routes</li>
+            <li>Gemma</li>
           </ul>
           <div class="button-row">
+            <a class="btn btn--sm" href="projects/momentum.html">Read more</a>
             <a
               class="btn btn--sm"
               href="https://github.com/energizee/GDGStudyApp"
@@ -288,14 +291,22 @@
           <p class="card-note">2026 | Group coursework</p>
           <p class="card-body">
             A Java chat client and server made for a university group project.
-            Data transport is chosen per data type: TCP for messages and file
-            transfer, UDP for live webcam frames and video.
+            We chose the transport per data type, so TCP for messages and file
+            transfer where you cannot afford to lose anything, and UDP for live
+            webcam frames where missed frames are less problematic. I
+            wrote the file transfer side and worked on the architecture for the
+            core connectivity.
           </p>
           <ul class="chips">
             <li>Java</li>
-            <li>TCP/UDP Sockets</li>
+            <li>TCP/UDP sockets</li>
+            <li>Concurrency</li>
             <li>JavaFX</li>
           </ul>
+          <p class="source-note">
+            Source is on the university's private GitLab and cannot be
+            published.
+          </p>
         </article>
 
         <article class="card" data-reveal>
@@ -304,12 +315,16 @@
           <p class="card-body">
             A simple UNIX shell made for a university group project. Process
             control with fork and exec, built-ins, user-defined aliases and a
-            persistent command history.
+            command history that sticks around between sessions. This is where I discovered the pain of segfaults in C, and learned how to track them down!
           </p>
           <ul class="chips">
             <li>C</li>
             <li>POSIX</li>
           </ul>
+          <p class="source-note">
+            Source is on the university's private GitLab and cannot be
+            published.
+          </p>
         </article>
       </section>
 
@@ -319,37 +334,80 @@
         <div class="skills" data-reveal>
           <div class="skill-group">
             <h3 class="eyebrow">Languages</h3>
-            <ul class="chips">
-              <li>Python</li>
-              <li>TypeScript</li>
-              <li>JavaScript</li>
-              <li>Java</li>
-              <li>C</li>
-              <li>C++</li>
-              <li>HTML &amp; CSS</li>
-            </ul>
+            <p class="skill-line">
+              TypeScript, JavaScript, Java, C, SQL, Python, C++
+            </p>
           </div>
 
           <div class="skill-group">
-            <h3 class="eyebrow">Frameworks &amp; libraries</h3>
-            <ul class="chips">
-              <li>React</li>
-              <li>React Native</li>
-              <li>Electron</li>
-              <li>Zustand</li>
-              <li>JavaFX</li>
-            </ul>
+            <h3 class="eyebrow">Backend &amp; data</h3>
+            <p class="skill-line">
+              PostgreSQL, Supabase (Auth, row-level security, Edge Functions),
+              server-side API routes, TCP and UDP sockets, concurrency and
+              threading
+            </p>
+          </div>
+
+          <div class="skill-group">
+            <h3 class="eyebrow">Frontend</h3>
+            <p class="skill-line">
+              React, Next.js, Electron, Zustand, React Native
+            </p>
           </div>
 
           <div class="skill-group">
             <h3 class="eyebrow">Tools &amp; platforms</h3>
-            <ul class="chips">
-              <li>Git</li>
-              <li>Supabase/PostgreSQL</li>
-              <li>POSIX</li>
-              <li>Unreal Engine 5</li>
-            </ul>
+            <p class="skill-line">
+              Git, GitHub Actions (CI/CD), Vercel, POSIX and Linux
+            </p>
           </div>
+        </div>
+      </section>
+
+      <section
+        class="section"
+        id="experience"
+        aria-labelledby="experience-title"
+      >
+        <h2 class="section-title" id="experience-title" data-reveal>
+          Experience
+        </h2>
+
+        <div class="roles" data-reveal>
+          <article class="role">
+            <h3 class="role-title">Treasurer</h3>
+            <p class="card-note">
+              GDG on Campus Strathclyde | Sep 2026 - present
+            </p>
+            <p class="card-body">
+              I own the society's finances: the records, the budget, and income
+              and expenditure across every event we run. I also prepare event
+              budgets and funding applications, handle reimbursements, and
+              coordinate with the Students' Union on financial procedure.
+            </p>
+          </article>
+
+          <article class="role">
+            <h3 class="role-title">Shift Leader</h3>
+            <p class="card-note">
+              Tesco, Glasgow (part-time) | Mar 2025 - present
+            </p>
+            <p class="card-body">
+              I lead shifts on the floor, delegating work across the team and
+              training new colleagues. I am also responsible for diagnosing and fixing faults in in-store systems, and monitoring store data to check that time-critical routines are completed properly.
+            </p>
+          </article>
+
+          <article class="role">
+            <h3 class="role-title">Young STEM Leader</h3>
+            <p class="card-note">2023</p>
+            <p class="card-body">
+              Wrote and delivered hands-on science lessons for primary school
+              pupils in my local area, including one on programming BBC
+              micro:bits. Explaining a for-loop to a nine-year-old is still the
+              hardest technical communication I have had to do!
+            </p>
+          </article>
         </div>
       </section>
 
@@ -395,10 +453,10 @@
           <section class="about-card about-card--accent" data-reveal>
             <h3 class="eyebrow">What I'm looking for</h3>
             <p>
-              Right now I'm looking for a graduate software engineering role or
-              internship starting summer 2027, ideally somewhere I'd be writing
-              production code early with people who'll review it properly.
-              <span class="highlight">Happy to relocate.</span>
+              Right now I'm looking for a graduate software engineering role
+              starting summer 2027, backend or full-stack, ideally somewhere I'd
+              be writing production code early with people who'll review it
+              properly. <span class="highlight">Happy to relocate.</span>
             </p>
           </section>
         </div>
