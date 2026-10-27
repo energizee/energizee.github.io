@@ -34,13 +34,13 @@ import SectionHead from "../components/SectionHead.astro";
               <img src="/assets/grademap/logo-mark.png" alt="" width="34" height="34" />
               Founder of Grademap
             </a>
+            <span class="study-tag"
+              ><Icon name="cap" size={26} /> Final-year Computing Science, Strathclyde</span
+            >
           </p>
           <p class="hero-lede">
             I build products <span class="marker">end to end</span>, from the data
             model to the interface.
-            <span class="hero-lede-sub"
-              >Final-year Computing Science student at Strathclyde.</span
-            >
           </p>
 
           <div class="button-row">
@@ -69,30 +69,23 @@ import SectionHead from "../components/SectionHead.astro";
               >See the project <Icon name="arrowRight" size={16} class="btn-arrow" /></span
             >
           </a>
-          <span class="hero-chip"><Icon name="pin" size={16} /> Glasgow, Scotland</span>
-          <span class="hero-chip hero-chip--status"
-            ><span class="status-dot" aria-hidden="true"></span>Open to 2027 roles</span
-          >
         </div>
       </div>
 
-      <dl class="stats">
-        <div>
+      <ul class="stats">
+        <li>
           <Icon name="chart" size={30} class="stat-icon" />
-          <dt>70%</dt>
-          <dd>Current average, on track for a First</dd>
-        </div>
-        <div>
+          <span class="stat-text">70% average</span>
+        </li>
+        <li>
           <Icon name="cap" size={30} class="stat-icon" />
-          <dt>2027</dt>
-          <dd>Graduating BSc Computing Science, Strathclyde</dd>
-        </div>
-        <div>
+          <span class="stat-text">Graduating 2027</span>
+        </li>
+        <li>
           <Icon name="sign" size={30} class="stat-icon" />
-          <dt>Open</dt>
-          <dd>To internships and 2027 graduate roles</dd>
-        </div>
-      </dl>
+          <span class="stat-text">Open to grad roles</span>
+        </li>
+      </ul>
     </section>
 
     <section class="section" id="work" aria-labelledby="work-title">
@@ -101,9 +94,8 @@ import SectionHead from "../components/SectionHead.astro";
       <div class="bento">
         <article class="card card--award bento-wide" id="featured" data-reveal>
           <p class="ribbon">
-            <Icon name="trophy" size={18} /> 1st place · JPMorganChase Code for Good
+            <Icon name="trophy" size={26} /> 1st place · JPMorganChase Code for Good
           </p>
-          <span class="card-icon"><Icon name="people" size={34} /></span>
           <h3 class="card-title">West Lothian 50+ Network impact platform</h3>
           <p class="card-note">Oct 2026 | Team of four</p>
           <p class="card-lede">
@@ -246,9 +238,6 @@ import SectionHead from "../components/SectionHead.astro";
               },
             ]}
           />
-          <ul class="metrics metrics--inline">
-            <li><strong>3.5×</strong> faster responses, 5.0s to 1.4s</li>
-          </ul>
           <ul class="chips">
             <li>TypeScript</li>
             <li>Next.js</li>

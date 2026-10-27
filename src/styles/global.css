@@ -492,6 +492,10 @@ svg {
 }
 
 .hero-subtitle {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 10px 8px;
   margin: clamp(10px, 2vh, 20px) 0 0;
   font-family: var(--font-display);
   font-size: clamp(20px, 3vh, 28px);
@@ -532,6 +536,22 @@ svg {
   rotate: var(--tilt);
 }
 
+.study-tag {
+  --tilt: -1deg;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 2px 14px 2px 8px;
+  border: 2px solid var(--ink);
+  border-radius: 12px 9px 13px 10px;
+  background: var(--grain), var(--mint-soft);
+  color: var(--ink);
+  font-size: 0.8em;
+  rotate: var(--tilt);
+  --icon-fill: var(--mint);
+  --icon-accent: var(--butter);
+}
+
 .founder-tag img {
   width: 1.1em;
   height: 1.1em;
@@ -549,15 +569,6 @@ svg {
   font-weight: 500;
   line-height: 1.35;
   color: var(--text);
-}
-
-.hero-lede-sub {
-  display: block;
-  margin-top: clamp(4px, 1.2vh, 10px);
-  font-family: var(--font-body);
-  font-size: clamp(16px, 2.5vh, 18px);
-  font-weight: 500;
-  color: var(--dim);
 }
 
 .marker {
@@ -620,41 +631,6 @@ svg {
   gap: 6px;
   font-weight: 700;
   font-size: 15px;
-}
-
-.hero-chip {
-  --tilt: -3deg;
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  padding: 4px 12px;
-  border: 2px solid var(--ink);
-  border-radius: 999px;
-  background: var(--paper);
-  color: var(--ink);
-  font-family: var(--font-display);
-  font-weight: 600;
-  font-size: 15px;
-  white-space: nowrap;
-  rotate: var(--tilt);
-  --icon-fill: var(--pink);
-}
-
-.hero-chip:hover {
-  animation: wiggle 0.5s steps(1, end) infinite;
-}
-
-.hero-chip--status {
-  --tilt: 2deg;
-  background: var(--grain), var(--mint);
-}
-
-.status-dot {
-  flex: none;
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  background: var(--ink);
 }
 
 /* ---------- buttons ---------- */
@@ -724,64 +700,56 @@ svg {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   margin: clamp(14px, 3vh, 36px) 0 0;
+  padding: 0;
+  list-style: none;
 }
 
-.stats > div {
+.stats > li {
   position: relative;
-  padding: clamp(8px, 1.6vh, 14px) 18px;
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: clamp(10px, 1.8vh, 16px) 18px;
   border: 2px solid var(--ink);
   border-radius: 18px 14px 20px 15px;
   background: var(--grain), var(--tint-soft);
 }
 
-.stats > div:nth-child(1) {
+.stats > li:nth-child(1) {
   --tint: var(--pink);
   --tint-soft: var(--pink-soft);
   rotate: -1.2deg;
 }
 
-.stats > div:nth-child(2) {
+.stats > li:nth-child(2) {
   --tint: var(--lilac);
   --tint-soft: var(--lilac-soft);
   rotate: 0.8deg;
 }
 
-.stats > div:nth-child(3) {
+.stats > li:nth-child(3) {
   --tint: var(--mint);
   --tint-soft: var(--mint-soft);
   rotate: -0.6deg;
 }
 
 .stat-icon {
-  position: absolute;
-  top: 12px;
-  right: 14px;
+  flex: none;
   rotate: 8deg;
   --icon-fill: var(--tint);
   --icon-accent: var(--paper);
 }
 
-.stats > div:hover .stat-icon {
+.stats > li:hover .stat-icon {
   animation: wiggle 0.5s steps(1, end) infinite;
 }
 
-.stats dt {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  margin: 0;
+.stat-text {
   font-family: var(--font-display);
-  font-size: clamp(28px, 4.6vh, 40px);
+  font-size: clamp(20px, 3.3vh, 27px);
   font-weight: 700;
   line-height: 1.15;
   color: var(--ink);
-}
-
-.stats dd {
-  margin: 0;
-  font-size: 15.5px;
-  line-height: 1.45;
-  color: var(--on-tint);
 }
 
 /* ---------- cards ---------- */
@@ -947,10 +915,10 @@ svg {
   --tint-soft: var(--butter-soft);
   --icon-accent: var(--pink);
   display: grid;
-  grid-template-columns: minmax(0, 1.35fr) minmax(0, 1fr);
-  column-gap: 36px;
+  grid-template-columns: minmax(0, 1.5fr) minmax(0, 1fr);
+  column-gap: 32px;
   align-content: start;
-  padding: 44px 40px 36px;
+  padding: 40px 34px 28px;
 }
 
 .card--award > * {
@@ -972,7 +940,7 @@ svg {
 .collage {
   display: grid;
   grid-template-columns: 1fr 1fr;
-  gap: 18px 16px;
+  gap: 14px 12px;
 }
 
 .polaroid {
@@ -1047,7 +1015,12 @@ svg {
 }
 
 .card--award .card-title {
-  font-size: 36px;
+  font-size: 32px;
+}
+
+.card--award .points {
+  gap: 8px;
+  margin-bottom: 16px;
 }
 
 .card--award .card-lede {
@@ -1057,20 +1030,20 @@ svg {
 .ribbon {
   --tilt: 3deg;
   position: absolute;
-  top: -20px;
+  top: -28px;
   right: 30px;
   z-index: 3;
   display: inline-flex;
   align-items: center;
   gap: 6px;
   margin: 0;
-  padding: 4px 14px 4px 10px;
+  padding: 6px 20px 6px 14px;
   border: var(--line) solid var(--ink);
-  border-radius: 12px 9px 13px 10px;
+  border-radius: 14px 10px 15px 11px;
   background: var(--grain), var(--butter);
   color: var(--ink);
   font-family: var(--font-display);
-  font-size: 16px;
+  font-size: 22px;
   font-weight: 600;
   box-shadow: 3px 3px 0 var(--pop);
   rotate: var(--tilt);
@@ -1079,58 +1052,6 @@ svg {
 
 .ribbon:hover {
   animation: wiggle 0.5s steps(1, end) infinite;
-}
-
-.metrics {
-  display: grid;
-  gap: 12px;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-}
-
-.metrics li {
-  display: flex;
-  align-items: center;
-  gap: 14px;
-  padding: 10px 14px;
-  border: 2px solid var(--ink);
-  border-radius: 16px 12px 17px 13px;
-  background: var(--grain), var(--butter-soft);
-  font-size: 15px;
-  line-height: 1.35;
-  color: var(--on-tint);
-}
-
-.metrics li:nth-child(2) {
-  background: var(--grain), var(--lilac-soft);
-}
-
-.metrics li:nth-child(3) {
-  background: var(--grain), var(--mint-soft);
-}
-
-.metrics strong {
-  flex: none;
-  min-width: 92px;
-  font-family: var(--font-display);
-  font-size: 32px;
-  font-weight: 700;
-  line-height: 1.1;
-  color: var(--ink);
-}
-
-.metrics--inline {
-  margin: 0 0 16px;
-}
-
-.metrics--inline li {
-  background: var(--grain), var(--tint-soft, var(--mint-soft));
-}
-
-.metrics--inline strong {
-  min-width: 0;
-  font-size: 26px;
 }
 
 .chips {
@@ -2207,8 +2128,8 @@ html:has(.lightbox[open]) {
   }
 
   .ribbon {
-    right: 16px;
-    font-size: 14px;
+    right: 14px;
+    font-size: 17px;
   }
 
   .stats {
