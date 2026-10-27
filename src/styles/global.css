@@ -397,8 +397,8 @@ svg {
 
 .section--hero {
   position: relative;
-  /* Sizes below also scale with the window height, so the whole card,
-     stats included, fits on the first screen of a short laptop too. */
+  /* Sizes below also scale with the window height, so the whole card
+     fits on the first screen of a short laptop too. */
   margin-top: clamp(70px, 9vh, 96px);
   padding: clamp(24px, 4.4vh, 44px) 48px clamp(22px, 4vh, 40px);
   color: var(--text);
@@ -445,7 +445,14 @@ svg {
 .peek-eyes {
   transform-box: fill-box;
   transform-origin: center;
-  animation: blink 5s steps(1, end) infinite;
+}
+
+.peek-eyes.is-blinking {
+  transform: scaleY(0.1);
+}
+
+.peek-pupils {
+  transition: transform 140ms steps(2, end);
 }
 
 .hero-grid {
@@ -691,65 +698,6 @@ svg {
 
 .featured-badge:hover .btn-arrow {
   translate: 3px 0;
-}
-
-/* ---------- stats ---------- */
-
-.stats {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
-  margin: clamp(14px, 3vh, 36px) 0 0;
-  padding: 0;
-  list-style: none;
-}
-
-.stats > li {
-  position: relative;
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  padding: clamp(10px, 1.8vh, 16px) 18px;
-  border: 2px solid var(--ink);
-  border-radius: 18px 14px 20px 15px;
-  background: var(--grain), var(--tint-soft);
-}
-
-.stats > li:nth-child(1) {
-  --tint: var(--pink);
-  --tint-soft: var(--pink-soft);
-  rotate: -1.2deg;
-}
-
-.stats > li:nth-child(2) {
-  --tint: var(--lilac);
-  --tint-soft: var(--lilac-soft);
-  rotate: 0.8deg;
-}
-
-.stats > li:nth-child(3) {
-  --tint: var(--mint);
-  --tint-soft: var(--mint-soft);
-  rotate: -0.6deg;
-}
-
-.stat-icon {
-  flex: none;
-  rotate: 8deg;
-  --icon-fill: var(--tint);
-  --icon-accent: var(--paper);
-}
-
-.stats > li:hover .stat-icon {
-  animation: wiggle 0.5s steps(1, end) infinite;
-}
-
-.stat-text {
-  font-family: var(--font-display);
-  font-size: clamp(20px, 3.3vh, 27px);
-  font-weight: 700;
-  line-height: 1.15;
-  color: var(--ink);
 }
 
 /* ---------- cards ---------- */
@@ -1401,6 +1349,13 @@ svg {
   rotate: -2deg;
 }
 
+.hero-note {
+  margin: 12px 0 0 4px;
+  font-size: 24px;
+  line-height: 1.2;
+  color: var(--rose-ink);
+}
+
 .prose .hand-note {
   margin: 2px 0 6px;
   font-size: 25px;
@@ -1618,7 +1573,7 @@ svg {
   font-weight: 700;
   color: var(--text);
   text-decoration: none;
-  background: linear-gradient(transparent 58%, var(--pink) 58%);
+  background: linear-gradient(transparent 82%, var(--pink) 82%);
   overflow-wrap: anywhere;
 }
 
@@ -1819,99 +1774,6 @@ html:has(.lightbox[open]) {
   animation: wiggle 0.5s steps(1, end) infinite;
 }
 
-/* ---------- corner cat ---------- */
-
-.cat-layer {
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-}
-
-.cat {
-  position: absolute;
-  right: max(12px, calc(50% - 640px));
-  bottom: 40px;
-  width: 140px;
-  height: 140px;
-  padding: 0;
-  border: 0;
-  background: transparent;
-  cursor: pointer;
-  border-radius: 50%;
-  pointer-events: auto;
-  transition: translate 200ms steps(2, end);
-}
-
-.cat:hover {
-  translate: 0 -5px;
-}
-
-.cat svg {
-  overflow: visible;
-  width: 100%;
-  height: 100%;
-}
-
-.cat-spot-shadow {
-  fill: var(--ink);
-}
-
-.cat-spot {
-  fill: var(--mint);
-  stroke: var(--ink);
-  stroke-width: 3;
-}
-
-.cat-fur {
-  fill: var(--cat);
-  stroke: var(--cat-rim);
-  stroke-width: 3;
-  stroke-linejoin: round;
-}
-
-.cat-tail-outer,
-.cat-tail-inner {
-  fill: none;
-  stroke-linecap: round;
-  transform-origin: 120px 156px;
-  animation: tail 2.4s steps(1, end) infinite;
-}
-
-.cat-tail-outer {
-  stroke: var(--cat-rim);
-  stroke-width: 16;
-}
-
-.cat-tail-inner {
-  stroke: var(--cat);
-  stroke-width: 10;
-}
-
-.cat-eye {
-  fill: var(--cat-eyes);
-  stroke: none;
-}
-
-.cat-pupil {
-  fill: var(--ink);
-  stroke: none;
-}
-
-.cat-ear {
-  transform-origin: 82px 80px;
-  transition: transform 240ms steps(2, end);
-}
-
-.cat-eyes {
-  transition: transform 200ms var(--ease);
-}
-
-.cat-lids {
-  transform-origin: 100px 92px;
-  transition: transform 90ms linear;
-}
-
 /* ---------- stop-motion ---------- */
 
 .js-reveal [data-reveal] {
@@ -2008,19 +1870,6 @@ html:has(.lightbox[open]) {
   }
 }
 
-@keyframes blink {
-  0%,
-  100% {
-    transform: scaleY(1);
-  }
-  95% {
-    transform: scaleY(0.1);
-  }
-  97% {
-    transform: scaleY(1);
-  }
-}
-
 @keyframes earTwitch {
   0%,
   100% {
@@ -2037,31 +1886,11 @@ html:has(.lightbox[open]) {
   }
 }
 
-@keyframes tail {
-  0%,
-  100% {
-    rotate: 0deg;
-  }
-  33% {
-    rotate: 6deg;
-  }
-  66% {
-    rotate: -3deg;
-  }
-}
-
 /* ---------- responsive ---------- */
 
 @media (max-width: 1240px) {
   .sky-sticker {
     display: none !important;
-  }
-
-  .cat {
-    width: 104px;
-    height: 104px;
-    right: 14px;
-    bottom: 28px;
   }
 }
 
@@ -2127,15 +1956,22 @@ html:has(.lightbox[open]) {
     font-size: 28px;
   }
 
+  /* On narrow cards the banner sits in the flow instead of overlapping. */
   .ribbon {
-    right: 14px;
+    position: relative;
+    top: auto;
+    right: auto;
+    justify-self: start;
+    margin: -8px 0 18px -4px;
     font-size: 17px;
   }
 
-  .stats {
-    grid-template-columns: 1fr;
-    gap: 12px;
+  .card--award::after {
+    left: auto;
+    right: 36px;
+    rotate: 4deg;
   }
+
 }
 
 @media (max-width: 640px) {
@@ -2168,6 +2004,10 @@ html:has(.lightbox[open]) {
 
   .hero-subtitle {
     font-size: 22px;
+  }
+
+  .hero-and {
+    display: none;
   }
 
   .section-head .section-title {
@@ -2215,12 +2055,6 @@ html:has(.lightbox[open]) {
     height: 22px;
   }
 
-  .cat {
-    width: 80px;
-    height: 80px;
-    right: 10px;
-    bottom: 18px;
-  }
 }
 
 @media (max-width: 480px) {
@@ -2253,7 +2087,6 @@ html:has(.lightbox[open]) {
 
 @media print {
   .sky,
-  .cat-layer,
   .site-header,
   .skip-link,
   .peek-cat {

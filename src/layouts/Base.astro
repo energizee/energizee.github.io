@@ -2,7 +2,6 @@
 import "../styles/global.css";
 import Nav from "../components/Nav.astro";
 import StarField from "../components/StarField.astro";
-import CornerCat from "../components/CornerCat.astro";
 
 interface Props {
   title: string;
@@ -75,7 +74,6 @@ const fonts =
     <StarField />
     <Nav home={home} />
     <slot />
-    <CornerCat />
 
     <script>
       import "../scripts/main.js";

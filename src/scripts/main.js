@@ -148,79 +148,66 @@
     update();
   }
 
-  const cat = document.querySelector("[data-cat]");
+  const peekCats = Array.from(document.querySelectorAll("[data-peek-cat]")).map(
+    (svg) => ({
+      svg,
+      eyes: svg.querySelector("[data-peek-eyes]"),
+      pupils: svg.querySelector("[data-peek-pupils]"),
+    })
+  );
 
-  if (cat && !reduced) {
-    const eyes = cat.querySelector("[data-cat-eyes]");
-    const lids = cat.querySelector("[data-cat-lids]");
-    const ear = cat.querySelector("[data-cat-ear]");
-
-    const blink = () => {
-      window.setTimeout(() => {
-        if (lids) {
-          lids.style.transform = "scaleY(0.08)";
-          window.setTimeout(() => {
-            lids.style.transform = "scaleY(1)";
-          }, 90);
-        }
-        blink();
-      }, 5000 + Math.random() * 6000);
-    };
-    blink();
-
-    let earBusy = false;
-    cat.addEventListener("mouseenter", () => {
-      if (!ear || earBusy) return;
-      earBusy = true;
-      ear.style.transform = "rotate(6deg)";
-      window.setTimeout(() => {
-        ear.style.transform = "rotate(0deg)";
-        earBusy = false;
-      }, 240);
+  if (peekCats.length && !reduced) {
+    // Each cat blinks on its own random timer.
+    peekCats.forEach(({ eyes }) => {
+      const blink = () => {
+        window.setTimeout(() => {
+          eyes.classList.add("is-blinking");
+          window.setTimeout(() => eyes.classList.remove("is-blinking"), 130);
+          blink();
+        }, 2500 + Math.random() * 5000);
+      };
+      blink();
     });
 
-    if (eyes && !window.matchMedia("(hover: none)").matches) {
-      let box = null;
-      const measure = () => {
-        box = null;
-      };
-      const boxOf = () => {
-        if (!box) {
-          const r = eyes.getBoundingClientRect();
-          box = { x: r.left + r.width / 2, y: r.top + r.height / 2 };
-        }
-        return box;
-      };
-
+    if (!window.matchMedia("(hover: none)").matches) {
       let pointer = null;
       let pending = false;
 
+      // Pupils lean towards the pointer, as far as the eye allows.
       const track = () => {
         pending = false;
         if (!pointer) return;
-        const c = boxOf();
-        const dx = pointer.x - c.x;
-        const dy = pointer.y - c.y;
-        const dist = Math.hypot(dx, dy) || 1;
-        const reach = Math.min(2, dist / 60);
-        eyes.style.transform = `translate(${((dx / dist) * reach).toFixed(2)}px, ${(
-          (dy / dist) *
-          reach
-        ).toFixed(2)}px)`;
+        peekCats.forEach(({ svg, pupils }) => {
+          const r = svg.getBoundingClientRect();
+          if (r.bottom < 0 || r.top > window.innerHeight) return;
+          const scale = r.width / 150;
+          const dx = pointer.x - (r.left + 75 * scale);
+          const dy = pointer.y - (r.top + 50 * scale);
+          const dist = Math.hypot(dx, dy) || 1;
+          const reach = Math.min(1, dist / 160);
+          pupils.style.transform = `translate(${((dx / dist) * 4 * reach).toFixed(2)}px, ${(
+            (dy / dist) *
+            2.5 *
+            reach
+          ).toFixed(2)}px)`;
+        });
+      };
+
+      const schedule = () => {
+        if (pending) return;
+        pending = true;
+        requestAnimationFrame(track);
       };
 
       window.addEventListener(
         "mousemove",
         (e) => {
           pointer = { x: e.clientX, y: e.clientY };
-          if (pending) return;
-          pending = true;
-          requestAnimationFrame(track);
+          schedule();
         },
         { passive: true }
       );
-      window.addEventListener("scroll", measure, { passive: true });
-      window.addEventListener("resize", measure, { passive: true });
+      window.addEventListener("scroll", schedule, { passive: true });
     }
   }
 })();

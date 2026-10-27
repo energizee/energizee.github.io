@@ -58,10 +58,6 @@ export const icons = {
 
   heart: `<path class="f" d="M16 27S4 19.5 4 11.5A6 6 0 0 1 16 8a6 6 0 0 1 12 3.5C28 19.5 16 27 16 27Z"/>`,
 
-  chart: `<path d="M3.5 27.5h25"/>
-    <rect class="a" x="5" y="17" width="5.5" height="10.5" rx="1"/>
-    <rect class="f" x="13.25" y="11" width="5.5" height="16.5" rx="1"/>
-    <rect class="a" x="21.5" y="5" width="5.5" height="22.5" rx="1"/>`,
 
   cap: `<path class="a" d="M8 15.5v5.5c0 2.2 3.6 4 8 4s8-1.8 8-4v-5.5"/>
     <path class="f" d="M16 6 2.5 12.5 16 19l13.5-6.5Z"/>
@@ -72,9 +68,6 @@ export const icons = {
     <path d="M10.5 4.5v5M21.5 4.5v5"/>
     <circle class="k" cx="11" cy="18.5" r="1.4"/><circle class="k" cx="16" cy="18.5" r="1.4"/><circle class="k" cx="21" cy="18.5" r="1.4"/><circle class="k" cx="11" cy="23" r="1.4"/>`,
 
-  sign: `<path d="M9.5 12 16 5.5l6.5 6.5"/><circle class="k" cx="16" cy="5.5" r="1.6"/>
-    <rect class="f" x="4" y="12" width="24" height="12" rx="3"/>
-    <path d="M9 18h14"/>`,
 
   map: `<path class="f" d="M4 8.5 11 5.5l10 3 7-3v18l-7 3-10-3-7 3Z"/>
     <path d="M11 5.5v18M21 8.5v18"/>
