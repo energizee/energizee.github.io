@@ -1,0 +1,67 @@
+---
+import Base from "./Base.astro";
+import Icon from "../components/Icon.astro";
+import type { IconName } from "../components/icons";
+
+interface Props {
+  title: string;
+  description: string;
+  ogTitle?: string;
+  ogDescription: string;
+  heading: string;
+  note: string;
+  lede: string;
+  chips: string[];
+  icon: IconName;
+  tint: "pink" | "lilac" | "mint" | "butter" | "peach";
+  link?: { href: string; label: string };
+  logo?: { src: string; width: number; height: number };
+  sourceNote?: string;
+}
+
+const { title, description, ogTitle, ogDescription, heading, note, lede, chips, icon, tint, link, logo, sourceNote } =
+  Astro.props;
+---
+
+<Base title={title} description={description} ogTitle={ogTitle} ogDescription={ogDescription} ogType="article" noindex>
+  <main class="site-main detail-main" id="main" style={`--tint: var(--${tint}); --tint-soft: var(--${tint}-soft)`}>
+    <a class="back-link" href="/#work">
+      <Icon name="arrowLeft" size={18} /> Back to projects
+    </a>
+
+    <header class="detail-head">
+      {
+        logo ? (
+          <h1 class="detail-title detail-title--logo">
+            <img src={logo.src} alt={heading} width={logo.width} height={logo.height} />
+          </h1>
+        ) : (
+          <>
+            <span class="card-icon card-icon--big">
+              <Icon name={icon} size={44} />
+            </span>
+            <h1 class="detail-title">{heading}</h1>
+          </>
+        )
+      }
+      <p class="card-note">{note}</p>
+      <p class="detail-lede">{lede}</p>
+      <ul class="chips">
+        {chips.map((chip) => <li>{chip}</li>)}
+      </ul>
+      {
+        link && (
+          <div class="button-row">
+            <a class="btn btn--sm" href={link.href}>
+              {link.label}
+              <Icon name="external" size={18} />
+            </a>
+          </div>
+        )
+      }
+      {sourceNote && <p class="source-note">{sourceNote}</p>}
+    </header>
+
+    <slot />
+  </main>
+</Base>

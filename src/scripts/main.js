@@ -19,7 +19,7 @@
     });
 
     const meta = document.querySelector('meta[name="theme-color"]');
-    if (meta) meta.content = theme === "day" ? "#f4efff" : "#120a2a";
+    if (meta) meta.content = theme === "day" ? "#b9a5f0" : "#120914";
   };
 
   const toggleTheme = () => {
@@ -35,48 +35,6 @@
     el.addEventListener("click", toggleTheme);
   });
 
-  const STARS = {
-    seed: 20270601,
-    columns: 7,
-    rows: 3,
-    band: 0.55,
-    radius: [2, 3],
-    opacity: [0.25, 0.5],
-  };
-
-  const seededRandom = (seed) => () => {
-    seed = (seed + 0x6d2b79f5) | 0;
-    let t = Math.imul(seed ^ (seed >>> 15), 1 | seed);
-    t = (t + Math.imul(t ^ (t >>> 7), 61 | t)) ^ t;
-    return ((t ^ (t >>> 14)) >>> 0) / 4294967296;
-  };
-
-  const starField = document.querySelector("[data-stars]");
-
-  if (starField) {
-    const rand = seededRandom(STARS.seed);
-    const lerp = ([min, max]) => min + rand() * (max - min);
-    const svgNS = "http://www.w3.org/2000/svg";
-    const frag = document.createDocumentFragment();
-
-    for (let row = 0; row < STARS.rows; row++) {
-      for (let col = 0; col < STARS.columns; col++) {
-        const star = document.createElementNS(svgNS, "circle");
-
-        star.setAttribute("cx", `${((col + rand()) / STARS.columns) * 100}%`);
-        star.setAttribute(
-          "cy",
-          `${((row + rand()) / STARS.rows) * STARS.band * 100}%`
-        );
-        star.setAttribute("r", lerp(STARS.radius).toFixed(2));
-        star.setAttribute("opacity", lerp(STARS.opacity).toFixed(2));
-        frag.appendChild(star);
-      }
-    }
-
-    starField.appendChild(frag);
-  }
-
   const revealables = document.querySelectorAll("[data-reveal]");
 
   if (revealables.length && "IntersectionObserver" in window) {
@@ -85,21 +43,64 @@
     if (reduced) {
       revealables.forEach((el) => el.classList.add("is-visible"));
     } else {
-      const observer = new IntersectionObserver(
+      // Play once an element is properly on screen. Reset it only after it has
+      // left past the bottom edge, so it animates again on the way down but
+      // simply stays put when scrolling back up.
+      const show = new IntersectionObserver(
         (entries) => {
           entries.forEach((entry) => {
-            const el = entry.target;
-            el.classList.toggle("is-visible", entry.isIntersecting);
-            el.classList.toggle(
-              "is-above",
-              !entry.isIntersecting && entry.boundingClientRect.top < 0
-            );
+            if (entry.isIntersecting) entry.target.classList.add("is-visible");
           });
         },
-        { rootMargin: "-6% 0px -12% 0px" }
+        { rootMargin: "0px 0px -8% 0px" }
       );
-      revealables.forEach((el) => observer.observe(el));
+      const reset = new IntersectionObserver((entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) return;
+          // Above the viewport (e.g. after jumping to #contact) counts as seen.
+          entry.target.classList.toggle("is-visible", entry.boundingClientRect.top <= 0);
+        });
+      });
+      revealables.forEach((el) => {
+        show.observe(el);
+        reset.observe(el);
+      });
     }
+  }
+
+  if (!reduced && !window.matchMedia("(hover: none)").matches) {
+    document.querySelectorAll(".card").forEach((card) => {
+      card.addEventListener("pointermove", (e) => {
+        const r = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${e.clientX - r.left}px`);
+        card.style.setProperty("--my", `${e.clientY - r.top}px`);
+      });
+    });
+  }
+
+  const lightbox = document.querySelector("[data-lightbox]");
+
+  if (lightbox) {
+    const image = lightbox.querySelector("[data-lightbox-img]");
+    const caption = lightbox.querySelector("[data-lightbox-caption]");
+
+    document.querySelectorAll("[data-zoom]").forEach((button) => {
+      button.addEventListener("click", () => {
+        const thumb = button.querySelector("img");
+        image.src = button.dataset.zoom;
+        image.alt = thumb ? thumb.alt : "";
+        const figcaption = button.closest("figure")?.querySelector("figcaption");
+        caption.textContent = figcaption ? figcaption.textContent : "";
+        lightbox.showModal();
+      });
+    });
+
+    // Clicks on the dimmed backdrop land on the dialog itself.
+    lightbox.addEventListener("click", (e) => {
+      if (e.target === lightbox || e.target.closest("[data-lightbox-close]")) {
+        lightbox.close();
+      }
+    });
   }
 
   const pairs = Array.from(document.querySelectorAll("[data-nav-link]"))

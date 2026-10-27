@@ -1,0 +1,13 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<dialog class="lightbox" data-lightbox aria-label="Expanded photo">
+  <figure class="lightbox-frame">
+    <img data-lightbox-img alt="" />
+    <figcaption data-lightbox-caption></figcaption>
+  </figure>
+  <button class="lightbox-close" type="button" data-lightbox-close aria-label="Close photo">
+    <Icon name="close" size={26} />
+  </button>
+</dialog>

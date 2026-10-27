@@ -1,0 +1,21 @@
+---
+import Icon from "./Icon.astro";
+import type { IconName } from "./icons";
+
+interface Props {
+  index: string;
+  title: string;
+  titleId: string;
+  icon: IconName;
+}
+
+const { index, title, titleId, icon } = Astro.props;
+---
+
+<header class="section-head" data-reveal>
+  <h2 class="section-title" id={titleId}>
+    <Icon name={icon} size={34} class="boil" />
+    {title}
+  </h2>
+  <span class="section-index" aria-hidden="true">{index}</span>
+</header>

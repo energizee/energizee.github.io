@@ -1,0 +1,22 @@
+---
+import Icon from "./Icon.astro";
+
+interface Props {
+  items: { lead?: string; text: string }[];
+}
+
+const { items } = Astro.props;
+---
+
+<ul class="points">
+  {
+    items.map((item) => (
+      <li>
+        <Icon name="star" size={20} class="point-star" />
+        <span>
+          {item.lead && <strong>{item.lead}</strong>} {item.text}
+        </span>
+      </li>
+    ))
+  }
+</ul>

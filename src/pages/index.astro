@@ -1,0 +1,548 @@
+---
+import Base from "../layouts/Base.astro";
+import Icon from "../components/Icon.astro";
+import PeekCat from "../components/PeekCat.astro";
+import Lightbox from "../components/Lightbox.astro";
+import Points from "../components/Points.astro";
+import SectionHead from "../components/SectionHead.astro";
+---
+
+<Base
+  title="Lee Elder's Portfolio"
+  description="Lee Elder, a full-stack developer in Glasgow, Scotland, founder of Grademap and winner of JPMorganChase Code for Good 2026. BSc Computing Science at Strathclyde, graduating June 2027 and open to graduate roles."
+  ogDescription="Full-stack developer in Glasgow, Scotland, founder of Grademap and winner of JPMorganChase Code for Good 2026. BSc Computing Science at Strathclyde, graduating June 2027."
+  home
+>
+  <main class="site-main" id="main">
+    <section class="section--hero" id="hero" aria-labelledby="hero-title">
+      <PeekCat class="peek-cat--hero" />
+
+      <div class="hero-grid">
+        <div class="hero-intro">
+          <p class="hero-hello">Hi, I'm</p>
+          <h1 class="hero-title" id="hero-title">
+            <span class="squiggle"
+              >Lee Elder<svg viewBox="0 0 300 16" preserveAspectRatio="none" aria-hidden="true">
+                <path d="M2 10C30 2 50 16 80 8s50 6 80-1 50 8 80 0 40 5 58-2"></path>
+              </svg></span
+            >
+          </h1>
+          <p class="hero-subtitle">
+            <mark>Full-stack developer</mark>
+            <span class="hero-and" aria-hidden="true">&amp;</span>
+            <a class="founder-tag" href="https://grademap.net">
+              <img src="/assets/grademap/logo-mark.png" alt="" width="34" height="34" />
+              Founder of Grademap
+            </a>
+          </p>
+          <p class="hero-lede">
+            I build products <span class="marker">end to end</span>, from the data
+            model to the interface.
+            <span class="hero-lede-sub"
+              >Final-year Computing Science student at Strathclyde.</span
+            >
+          </p>
+
+          <div class="button-row">
+            <a class="btn btn--primary" href="/content/Lee_Elder_CV_2026.pdf">
+              <Icon name="download" size={20} /> Download CV (PDF)
+            </a>
+            <a class="btn" href="https://github.com/energizee" rel="me">
+              <Icon name="github" size={20} /> GitHub
+            </a>
+            <a class="btn" href="https://www.linkedin.com/in/lee-elder3" rel="me">
+              <Icon name="linkedin" size={20} /> LinkedIn
+            </a>
+            <a class="btn" href="mailto:lee@leeelder.dev">
+              <Icon name="mail" size={20} /> Email
+            </a>
+          </div>
+        </div>
+
+        <div class="hero-stickers">
+          <a class="featured-badge" href="#featured">
+            <span class="featured-label">
+              <Icon name="trophy" size={18} class="boil" /> Featured
+            </span>
+            <span class="featured-title">Winner, JPMorganChase Code for Good 2026</span>
+            <span class="featured-link"
+              >See the project <Icon name="arrowRight" size={16} class="btn-arrow" /></span
+            >
+          </a>
+          <span class="hero-chip"><Icon name="pin" size={16} /> Glasgow, Scotland</span>
+          <span class="hero-chip hero-chip--status"
+            ><span class="status-dot" aria-hidden="true"></span>Open to 2027 roles</span
+          >
+        </div>
+      </div>
+
+      <dl class="stats">
+        <div>
+          <Icon name="chart" size={30} class="stat-icon" />
+          <dt>70%</dt>
+          <dd>Current average, on track for a First</dd>
+        </div>
+        <div>
+          <Icon name="cap" size={30} class="stat-icon" />
+          <dt>2027</dt>
+          <dd>Graduating BSc Computing Science, Strathclyde</dd>
+        </div>
+        <div>
+          <Icon name="sign" size={30} class="stat-icon" />
+          <dt>Open</dt>
+          <dd>To internships and 2027 graduate roles</dd>
+        </div>
+      </dl>
+    </section>
+
+    <section class="section" id="work" aria-labelledby="work-title">
+      <SectionHead index="01" title="Projects" titleId="work-title" icon="rocket" />
+
+      <div class="bento">
+        <article class="card card--award bento-wide" id="featured" data-reveal>
+          <p class="ribbon">
+            <Icon name="trophy" size={18} /> 1st place · JPMorganChase Code for Good
+          </p>
+          <span class="card-icon"><Icon name="people" size={34} /></span>
+          <h3 class="card-title">West Lothian 50+ Network impact platform</h3>
+          <p class="card-note">Oct 2026 | Team of four</p>
+          <p class="card-lede">
+            A full-stack platform for a charity's members, volunteers and staff,
+            built in 24 hours.
+          </p>
+          <Points
+            items={[
+              {
+                lead: "Owned the backend:",
+                text: "the data model and the Express, PostgreSQL and Drizzle API, and helped shape the member-facing design.",
+              },
+              {
+                lead: "Designed for older users:",
+                text: "one event at a time with large controls, mirroring the charity's paper forms so digital and paper responses combine into one wellbeing score for funders.",
+              },
+              {
+                lead: "AI with a safety net:",
+                text: "Gemini follow-up questions through a server-side client that falls back to scripted questions if the model fails, covered by 45 integration tests.",
+              },
+            ]}
+          />
+          <div class="collage">
+            <figure class="polaroid polaroid--main">
+              <button
+                class="zoom"
+                type="button"
+                data-zoom="/assets/codeforgood/team-full.jpg"
+                aria-label="Expand photo"
+              >
+                <img
+                  src="/assets/codeforgood/team.jpg"
+                  alt="Lee with teammates and a mentor at Code for Good Glasgow"
+                  width="960"
+                  height="720"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption>the winning team!</figcaption>
+            </figure>
+            <figure class="polaroid">
+              <button
+                class="zoom"
+                type="button"
+                data-zoom="/assets/codeforgood/frame-full.jpg"
+                aria-label="Expand photo"
+              >
+                <img
+                  src="/assets/codeforgood/frame.jpg"
+                  alt="Lee and two teammates posing in a JPMorganChase photo frame"
+                  width="560"
+                  height="560"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption>day 1</figcaption>
+            </figure>
+            <figure class="polaroid">
+              <button
+                class="zoom"
+                type="button"
+                data-zoom="/assets/codeforgood/welcome-full.jpg"
+                aria-label="Expand photo"
+              >
+                <img
+                  src="/assets/codeforgood/welcome.jpg"
+                  alt="Lee and two teammates beside the Welcome to Code for Good sign"
+                  width="560"
+                  height="560"
+                  loading="lazy"
+                />
+              </button>
+              <figcaption>day 2</figcaption>
+            </figure>
+          </div>
+          <ul class="chips">
+            <li>Express</li>
+            <li>PostgreSQL</li>
+            <li>Drizzle ORM</li>
+            <li>Gemini</li>
+            <li>Accessibility</li>
+          </ul>
+        </article>
+
+        <article class="card card--aurora" data-reveal>
+          <span class="card-icon card-icon--logo"
+            ><img src="/assets/grademap/logo-mark.png" alt="" width="40" height="40" /></span
+          >
+          <h3 class="card-title">Grademap</h3>
+          <p class="card-note">Nov 2025 - present | Founder</p>
+          <p class="card-lede">A cross-platform grade tracker and academic planner.</p>
+          <Points
+            items={[
+              {
+                lead: "Works backwards from your target:",
+                text: "the engine finds the marks still needed across weighted, partly-marked assessments and turns them into a prioritised list of what to do next.",
+              },
+              {
+                lead: "Built and shipped solo:",
+                text: "React and TypeScript, PostgreSQL with row-level security, Deno functions and CI/CD.",
+              },
+            ]}
+          />
+          <ul class="chips">
+            <li>React</li>
+            <li>TypeScript</li>
+            <li>PostgreSQL</li>
+            <li>Supabase</li>
+            <li>Deno</li>
+          </ul>
+          <div class="button-row card-actions">
+            <a class="btn btn--sm" href="/projects/grademap.html"
+              >Read more <Icon name="arrowRight" size={18} /></a
+            >
+            <a class="btn btn--sm" href="https://grademap.net"
+              >grademap.net <Icon name="external" size={18} /></a
+            >
+          </div>
+        </article>
+
+        <article class="card card--comet" data-reveal>
+          <span class="card-icon"><Icon name="bolt" size={34} /></span>
+          <h3 class="card-title">Momentum</h3>
+          <p class="card-note">Jun 2026 | Solo hackathon</p>
+          <p class="card-lede">An AI study companion, shipped solo in six hours.</p>
+          <Points
+            items={[
+              {
+                lead: "Solo against teams:",
+                text: "built at GDG on Campus Aberdeen against teams of two or three.",
+              },
+              {
+                lead: "One safe endpoint:",
+                text: "every model call goes through a single server-side endpoint, keeping the key off the client.",
+              },
+              {
+                lead: "Trusts nothing:",
+                text: "model output is validated against real records before the app uses it.",
+              },
+            ]}
+          />
+          <ul class="metrics metrics--inline">
+            <li><strong>3.5×</strong> faster responses, 5.0s to 1.4s</li>
+          </ul>
+          <ul class="chips">
+            <li>Next.js</li>
+            <li>TypeScript</li>
+            <li>AI</li>
+          </ul>
+          <div class="button-row card-actions">
+            <a class="btn btn--sm" href="https://github.com/energizee/GDGStudyApp"
+              >View the repo <Icon name="external" size={18} /></a
+            >
+          </div>
+        </article>
+
+        <article class="card card--nebula" data-reveal>
+          <span class="card-icon"><Icon name="chat" size={34} /></span>
+          <h3 class="card-title">Networked chat with video</h3>
+          <p class="card-note">2026 | Group coursework</p>
+          <p class="card-lede">
+            A Java chat client and server that picks its transport per data type.
+          </p>
+          <dl class="specs">
+            <div>
+              <dt>TCP</dt>
+              <dd>Messages and file transfer, where nothing can be lost</dd>
+            </div>
+            <div>
+              <dt>UDP</dt>
+              <dd>Live webcam frames and video, where speed matters most</dd>
+            </div>
+          </dl>
+          <ul class="chips">
+            <li>Java</li>
+            <li>TCP/UDP Sockets</li>
+            <li>JavaFX</li>
+          </ul>
+        </article>
+
+        <article class="card card--ember" data-reveal>
+          <span class="card-icon"><Icon name="terminal" size={34} /></span>
+          <h3 class="card-title">Simple Shell in C</h3>
+          <p class="card-note">2025 | Group coursework</p>
+          <p class="card-lede">A simple UNIX shell.</p>
+          <Points
+            items={[
+              { lead: "Process control", text: "with fork and exec." },
+              { lead: "Built-ins", text: "and user-defined aliases." },
+              { lead: "Command history", text: "that persists between sessions." },
+            ]}
+          />
+          <ul class="chips">
+            <li>C</li>
+            <li>POSIX</li>
+          </ul>
+        </article>
+      </div>
+    </section>
+
+    <section class="section" id="experience" aria-labelledby="experience-title">
+      <SectionHead index="02" title="Experience" titleId="experience-title" icon="briefcase" />
+
+      <ol class="timeline">
+        <li class="tl-item tl-item--founder" data-reveal>
+          <span class="tl-icon"
+            ><img src="/assets/grademap/logo-mark.png" alt="" width="28" height="28" /></span
+          >
+          <p class="tl-date">Oct 2026 - present</p>
+          <h3 class="tl-role">
+            Founder &amp; Full-Stack Developer <span class="tl-org">Grademap Ltd</span>
+          </h3>
+          <Points
+            items={[
+              {
+                lead: "Run it end to end:",
+                text: "sole director and developer, owning product direction, engineering and operations.",
+              },
+              {
+                lead: "Data protection:",
+                text: "ICO-registered data controller for students' academic data, balancing privacy and compliance against shipping speed.",
+              },
+              {
+                lead: "Roadmap:",
+                text: "product management and prioritisation, alongside full-time study and part-time work.",
+              },
+            ]}
+          />
+        </li>
+        <li class="tl-item" data-reveal>
+          <span class="tl-icon"><Icon name="coins" size={26} /></span>
+          <p class="tl-date">Sep 2026 - present</p>
+          <h3 class="tl-role">
+            Treasurer <span class="tl-org">Google Developer Student Club</span>
+          </h3>
+          <Points
+            items={[
+              {
+                lead: "Society finances:",
+                text: "records, budget, and income and expenditure across every event.",
+              },
+              {
+                lead: "Funding:",
+                text: "event budgets and funding applications, working with the Students' Union on financial procedure.",
+              },
+            ]}
+          />
+        </li>
+        <li class="tl-item" data-reveal>
+          <span class="tl-icon"><Icon name="basket" size={26} /></span>
+          <p class="tl-date">Mar 2025 - present</p>
+          <h3 class="tl-role">Shift Leader <span class="tl-org">Tesco, Glasgow</span></h3>
+          <Points
+            items={[
+              {
+                lead: "Leading shifts:",
+                text: "delegate across the team, train new colleagues and keep time-critical routines on schedule.",
+              },
+              {
+                lead: "Problem solving:",
+                text: "diagnose faults in in-store systems and handle escalated complaints.",
+              },
+            ]}
+          />
+        </li>
+        <li class="tl-item" data-reveal>
+          <span class="tl-icon"><Icon name="flask" size={26} /></span>
+          <p class="tl-date">2023</p>
+          <h3 class="tl-role">Young STEM Leader</h3>
+          <Points
+            items={[
+              {
+                lead: "Teaching:",
+                text: "designed and delivered science lessons for primary school pupils, including one on programming BBC micro:bits.",
+              },
+            ]}
+          />
+        </li>
+        <li class="tl-item tl-item--edu" data-reveal>
+          <span class="tl-icon"><Icon name="cap" size={26} /></span>
+          <p class="tl-date">2023 - 2027</p>
+          <h3 class="tl-role">
+            BSc (Hons) Computing Science
+            <span class="tl-org">University of Strathclyde</span>
+          </h3>
+          <Points
+            items={[
+              {
+                lead: "On track for a First:",
+                text: "expected First Class Honours, with a current average of 70%.",
+              },
+              {
+                lead: "Dissertation:",
+                text: "static analysis, controlled scheduling and automated mutation testing for concurrent Java programs.",
+              },
+            ]}
+          />
+        </li>
+      </ol>
+    </section>
+
+    <section class="section" id="skills" aria-labelledby="skills-title">
+      <SectionHead index="03" title="Skills" titleId="skills-title" icon="wrench" />
+
+      <div class="skills" data-reveal>
+        <div class="skill-group">
+          <h3 class="eyebrow"><Icon name="code" size={18} /> Languages</h3>
+          <ul class="chips">
+            <li>Java</li>
+            <li>TypeScript</li>
+            <li>JavaScript</li>
+            <li>C</li>
+            <li>SQL</li>
+            <li>Python</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="eyebrow"><Icon name="database" size={18} /> Backend &amp; data</h3>
+          <ul class="chips">
+            <li>Node.js</li>
+            <li>Express</li>
+            <li>PostgreSQL</li>
+            <li>Row-level security</li>
+            <li>Supabase</li>
+            <li>Drizzle ORM</li>
+            <li>REST APIs</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="eyebrow"><Icon name="window" size={18} /> Frontend</h3>
+          <ul class="chips">
+            <li>React</li>
+            <li>Next.js</li>
+            <li>Zustand</li>
+          </ul>
+        </div>
+
+        <div class="skill-group">
+          <h3 class="eyebrow"><Icon name="wrench" size={18} /> Tools</h3>
+          <ul class="chips">
+            <li>Git</li>
+            <li>GitHub Actions</li>
+            <li>CI/CD</li>
+            <li>Vitest</li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="section" id="about" aria-labelledby="about-title">
+      <SectionHead index="04" title="About me" titleId="about-title" icon="heart" />
+
+      <div class="prose">
+        <section class="about-card" data-reveal>
+          <h3 class="eyebrow"><Icon name="gamepad" size={18} /> How I started</h3>
+          <p class="hand-note">coding since I was 8!</p>
+          <p>
+            I have been coding since I was around 8 years old. When I would play
+            games on the PS3 with my dad and brother I would always have so many
+            questions as to how it all worked. One day, probably to stop me asking
+            so many questions, I got given a set of Python coding books and the
+            rest is history!
+          </p>
+        </section>
+
+        <section class="about-card" data-reveal>
+          <h3 class="eyebrow"><Icon name="hammer" size={18} /> What I've built</h3>
+          <p class="hand-note">learned by shipping</p>
+          <p>
+            Grademap is my first proper large-scale project, and most of what I
+            know about shipping something real I learned building it. Since then
+            I've won JPMorganChase's Code for Good with a team of four, and shipped
+            Momentum solo in a six-hour hackathon. Before all that I was making
+            games on Roblox, which is where I got used to writing code other
+            people would actually use.
+          </p>
+        </section>
+
+        <section class="about-card about-card--wide" data-reveal>
+          <h3 class="eyebrow"><Icon name="paw" size={18} /> Outside of code</h3>
+          <p>I like to keep both my body and mind active.</p>
+          <ul class="interests">
+            <li><Icon name="dumbbell" size={30} /><strong>Gym</strong></li>
+            <li>
+              <Icon name="shoe" size={30} /><strong>Running</strong>
+              <span>2026 Edinburgh half marathon, for Scottish Autism</span>
+            </li>
+            <li><Icon name="belt" size={30} /><strong>Brazilian Jiu Jitsu</strong></li>
+            <li><Icon name="pawn" size={30} /><strong>Chess</strong></li>
+            <li>
+              <Icon name="music" size={30} /><strong>Bass guitar</strong>
+              <span>Played for years, even live at my university</span>
+            </li>
+            <li>
+              <Icon name="paw" size={30} /><strong>Cats</strong>
+              <span>A huge animal lover, as you can tell from this site</span>
+            </li>
+          </ul>
+        </section>
+
+        <section class="about-card about-card--accent" data-reveal>
+          <h3 class="eyebrow"><Icon name="compass" size={18} /> What I'm looking for</h3>
+          <ul class="facts">
+            <li><Icon name="briefcase" size={26} /> Graduate software engineering role or internship</li>
+            <li><Icon name="calendar" size={26} /> Starting summer 2027</li>
+            <li><Icon name="pin" size={26} /> Happy to relocate</li>
+          </ul>
+          <p>
+            Ideally somewhere I'd be writing production code early, with people
+            who'll review it properly.
+          </p>
+        </section>
+      </div>
+    </section>
+
+    <section class="section section--contact" id="contact" aria-labelledby="contact-title">
+      <div class="contact-panel" data-reveal>
+        <PeekCat class="peek-cat--contact" />
+        <span class="section-index" aria-hidden="true">05</span>
+        <h2 class="section-title" id="contact-title">
+          Get in touch <Icon name="mail" size={44} class="boil" />
+        </h2>
+        <p class="contact-lede">Email is the fastest way to reach me:</p>
+        <p class="contact-email">
+          <a href="mailto:lee@leeelder.dev">lee@leeelder.dev</a>
+        </p>
+        <div class="button-row">
+          <a class="btn" href="https://github.com/energizee" rel="me">
+            <Icon name="github" size={20} /> github.com/energizee
+          </a>
+          <a class="btn" href="https://www.linkedin.com/in/lee-elder3" rel="me">
+            <Icon name="linkedin" size={20} /> linkedin.com/in/lee-elder3
+          </a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <Lightbox />
+</Base>

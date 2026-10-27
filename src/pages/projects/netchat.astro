@@ -1,0 +1,60 @@
+---
+import Project from "../../layouts/Project.astro";
+import DetailSection from "../../components/DetailSection.astro";
+---
+
+<Project
+  title="Networked chat with video — Lee Elder"
+  description="A Java chat client and server using TCP for messages and UDP for live video. A university group project write-up by Lee Elder."
+  ogDescription="A Java chat client and server using TCP for messages and UDP for live video."
+  heading="Networked chat with video"
+  note="2026 | Group coursework"
+  lede="A Java chat client and server that picks its transport per data type."
+  chips={["Java", "TCP/UDP Sockets", "JavaFX"]}
+  icon="chat"
+  tint="butter"
+  sourceNote="Source is on the university's private GitLab and cannot be published."
+>
+  <DetailSection title="Overview">
+    <p class="placeholder">
+      What the application does, how many people were in the group, and how
+      long you had.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="My contribution">
+    <p class="placeholder">
+      Which parts you personally wrote. Be specific and be honest — this is
+      the section that does the work now the source is not public, and it is
+      the first thing an interviewer will ask you to expand on.
+    </p>
+    <p class="placeholder">
+      If you led on a design decision or unblocked someone else, say so.
+      Working well in a group is a large part of what this project shows.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="How it works">
+    <p class="placeholder">
+      The interesting decision here is choosing transport per data type:
+      TCP for messages and file transfer where you cannot lose anything, UDP
+      for webcam frames where a dropped frame matters less than a late one.
+      Explain that tradeoff properly — it is the strongest technical idea in
+      the project.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="Problems I hit">
+    <p class="placeholder">
+      Frame reassembly, packet ordering, concurrency, dropped connections —
+      whichever ones you actually wrestled with, and what you did about
+      them.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="What I learned">
+    <p class="placeholder">
+      What you took away, technically and from working in a group.
+    </p>
+  </DetailSection>
+</Project>

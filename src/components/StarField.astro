@@ -1,0 +1,13 @@
+---
+import Icon from "./Icon.astro";
+---
+
+<div class="sky" aria-hidden="true">
+  <canvas class="starfield" data-starfield></canvas>
+  <Icon name="moon" size={96} class="sky-sticker is-night-only" />
+  <Icon name="sun" size={96} class="sky-sticker is-day-only" />
+</div>
+
+<script>
+  import "../scripts/stars.js";
+</script>

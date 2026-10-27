@@ -1,0 +1,52 @@
+---
+import Project from "../../layouts/Project.astro";
+import DetailSection from "../../components/DetailSection.astro";
+---
+
+<Project
+  title="GDGoC Aberdeen Hackathon — Lee Elder"
+  description="An AI study companion built solo in six hours for the GDGoC Aberdeen hackathon, around Google's open-weight Gemma model. A project write-up by Lee Elder."
+  ogDescription="An AI study companion built solo in six hours around Google's open-weight Gemma model."
+  heading="GDGoC Aberdeen Hackathon Project"
+  note="2026 | Solo project"
+  lede="An AI study companion built solo in six hours, against teams of up to three."
+  chips={["AI", "Hackathon", "TypeScript", "React"]}
+  icon="bolt"
+  tint="mint"
+  link={{ href: "https://github.com/energizee/GDGStudyApp", label: "View the repo" }}
+>
+  <DetailSection title="The brief">
+    <p class="placeholder">
+      We were tasked with creating an application centered around Google's open-weight Gemma models within a 6 hour period. The main brief was to create a study companion that actually helped users study through actions and not just display information. The 1st place prize was $500, and I was up against teams of 2-3 people as a solo entrant, so I had to be very careful with my time and scope to ensure I could deliver a working product in the time frame.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="What I built">
+    <p class="placeholder">
+      The app I built was a personalised study companion called Momentum that was focused around actionable feedback rather than just displaing information. Gemma was the core here by holding a live updating personal profile on the user based on their data, and then providing actionable feedback such as study plans with specifcally generated questions that were automatically marked by Gemma.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="How it works">
+    <p class="placeholder">
+      How you wired Gemma in, what runs where, and what the React front end
+      is doing. Worth being specific about how you handled the model given
+      it is open-weight rather than a hosted API.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="Working to the clock">
+    <p class="placeholder">
+      What you cut to ship on time, and what you protected. Deliberate
+      scoping under pressure is exactly the skill a hackathon demonstrates,
+      so say what you chose to leave out and why.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="What I would do with more time">
+    <p class="placeholder">
+      The roadmap you would follow if this became a real project, and
+      anything the judges pulled you up on.
+    </p>
+  </DetailSection>
+</Project>

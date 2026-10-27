@@ -1,0 +1,84 @@
+---
+import "../styles/global.css";
+import Nav from "../components/Nav.astro";
+import StarField from "../components/StarField.astro";
+import CornerCat from "../components/CornerCat.astro";
+
+interface Props {
+  title: string;
+  description: string;
+  ogTitle?: string;
+  ogDescription?: string;
+  ogType?: "website" | "article";
+  noindex?: boolean;
+  home?: boolean;
+}
+
+const {
+  title,
+  description,
+  ogTitle = title,
+  ogDescription = description,
+  ogType = "website",
+  noindex = false,
+  home = false,
+} = Astro.props;
+
+const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const fonts =
+  "https://fonts.googleapis.com/css2?family=Fredoka:wght@500;600;700&family=Figtree:wght@400;500;600;700&family=Gochi+Hand&display=swap";
+---
+
+<!doctype html>
+<html lang="en-GB">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{title}</title>
+    <meta name="description" content={description} />
+    <meta name="author" content="Lee Elder" />
+    {noindex && <meta name="robots" content="noindex" />}
+    <meta name="theme-color" content="#120914" />
+    <link rel="canonical" href={canonical} />
+
+    <meta property="og:type" content={ogType} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:title" content={ogTitle} />
+    <meta property="og:description" content={ogDescription} />
+    <meta property="og:locale" content="en_GB" />
+    <meta property="og:image" content="https://leeelder.dev/content/image.png" />
+    <meta property="og:image:width" content="1187" />
+    <meta property="og:image:height" content="765" />
+    <meta name="twitter:card" content="summary_large_image" />
+
+    <link rel="icon" href="/assets/favicon.svg" type="image/svg+xml" />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link rel="stylesheet" href={fonts} />
+
+    <script is:inline>
+      (() => {
+        let saved = null;
+        try {
+          saved = localStorage.getItem("le-theme");
+        } catch (e) {}
+        const day = saved
+          ? saved === "day"
+          : window.matchMedia("(prefers-color-scheme: light)").matches;
+        if (day) document.documentElement.dataset.theme = "day";
+      })();
+    </script>
+  </head>
+
+  <body>
+    <a class="skip-link" href="#main">Skip to content</a>
+    <StarField />
+    <Nav home={home} />
+    <slot />
+    <CornerCat />
+
+    <script>
+      import "../scripts/main.js";
+    </script>
+  </body>
+</html>

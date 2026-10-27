@@ -1,0 +1,46 @@
+---
+import Icon from "./Icon.astro";
+import type { IconName } from "./icons";
+
+interface Props {
+  home?: boolean;
+}
+
+const { home = false } = Astro.props;
+
+const links: { id: string; label: string; icon: IconName }[] = [
+  { id: "hero", label: "Home", icon: "house" },
+  { id: "work", label: "Projects", icon: "rocket" },
+  { id: "experience", label: "Experience", icon: "briefcase" },
+  { id: "skills", label: "Skills", icon: "wrench" },
+  { id: "about", label: "About", icon: "heart" },
+  { id: "contact", label: "Contact", icon: "mail" },
+];
+
+const href = (id: string) => (home ? `#${id}` : id === "hero" ? "/" : `/#${id}`);
+---
+
+<header class="site-header">
+  <nav class="site-nav" aria-label="Primary">
+    <div class="nav-pill">
+      {
+        links.map((link) => (
+          <a class="nav-link" data-nav-link={home ? "" : undefined} href={href(link.id)}>
+            <Icon name={link.icon} size={20} />
+            <span class="nav-label">{link.label}</span>
+          </a>
+        ))
+      }
+      <button
+        class="theme-toggle"
+        type="button"
+        data-theme-toggle
+        aria-label="Switch to day mode"
+        title="Switch to day mode"
+      >
+        <Icon name="moon" size={22} class="is-night-only" />
+        <Icon name="sun" size={22} class="is-day-only" />
+      </button>
+    </div>
+  </nav>
+</header>

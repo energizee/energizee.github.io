@@ -1,0 +1,55 @@
+---
+import Project from "../../layouts/Project.astro";
+import DetailSection from "../../components/DetailSection.astro";
+---
+
+<Project
+  title="Simple Shell in C — Lee Elder"
+  description="A UNIX shell in C with fork and exec process control, built-ins, aliases and persistent history. A university group project write-up by Lee Elder."
+  ogDescription="A UNIX shell in C with fork and exec process control, built-ins, aliases and persistent history."
+  heading="Simple Shell in C"
+  note="2025 | Group coursework"
+  lede="A UNIX shell with process control, built-ins, aliases and persistent history."
+  chips={["C", "POSIX"]}
+  icon="terminal"
+  tint="peach"
+  sourceNote="Source is on the university's private GitLab and cannot be published."
+>
+  <DetailSection title="Overview">
+    <p class="placeholder">
+      What the shell does, how many people were in the group, and how long
+      you had.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="My contribution">
+    <p class="placeholder">
+      Which parts you personally wrote — process control, the built-ins, the
+      alias table, history persistence, the parser. Be specific; with no
+      public source this section carries the project.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="How it works">
+    <p class="placeholder">
+      The read-parse-execute loop, how fork and exec are used to run
+      external commands, why built-ins have to run in the parent process,
+      and how aliases and history are stored between sessions.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="Problems I hit">
+    <p class="placeholder">
+      Zombie processes, signal handling, tokenising input, memory
+      management — whichever ones you actually hit. C is unforgiving, so
+      there will be a good story here.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="What I learned">
+    <p class="placeholder">
+      What working this close to the operating system taught you, and what
+      you would build next with it.
+    </p>
+  </DetailSection>
+</Project>

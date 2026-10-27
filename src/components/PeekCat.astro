@@ -1,0 +1,25 @@
+---
+interface Props {
+  class?: string;
+}
+
+const { class: className } = Astro.props;
+---
+
+<svg class:list={["peek-cat", className]} viewBox="0 0 150 80" aria-hidden="true">
+  <g class="peek-fur">
+    <path class="peek-ear" d="M38 52 36 8l30 22Z"></path>
+    <path class="peek-ear peek-ear--right" d="M112 52 114 8 84 30Z"></path>
+    <path d="M30 70C30 38 48 24 75 24s45 14 45 46Z"></path>
+  </g>
+  <g class="peek-eyes">
+    <ellipse class="peek-eye" cx="60" cy="50" rx="8" ry="9"></ellipse>
+    <ellipse class="peek-eye" cx="90" cy="50" rx="8" ry="9"></ellipse>
+    <ellipse class="peek-pupil" cx="61" cy="51" rx="2.6" ry="6"></ellipse>
+    <ellipse class="peek-pupil" cx="91" cy="51" rx="2.6" ry="6"></ellipse>
+  </g>
+  <g class="peek-fur">
+    <ellipse cx="50" cy="72" rx="15" ry="9"></ellipse>
+    <ellipse cx="100" cy="72" rx="15" ry="9"></ellipse>
+  </g>
+</svg>
