@@ -1157,6 +1157,10 @@ svg {
   margin-bottom: 0;
 }
 
+.card .source-note {
+  margin-top: 14px;
+}
+
 /* Scannable points: a star sticker and a bold lead-in per line. */
 .points {
   display: grid;

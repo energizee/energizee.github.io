@@ -208,11 +208,12 @@ import SectionHead from "../components/SectionHead.astro";
             ]}
           />
           <ul class="chips">
-            <li>React</li>
             <li>TypeScript</li>
             <li>PostgreSQL</li>
             <li>Supabase</li>
-            <li>Deno</li>
+            <li>GitHub Actions</li>
+            <li>React</li>
+            <li>Electron</li>
           </ul>
           <div class="button-row card-actions">
             <a class="btn btn--sm" href="/projects/grademap.html"
@@ -249,11 +250,15 @@ import SectionHead from "../components/SectionHead.astro";
             <li><strong>3.5×</strong> faster responses, 5.0s to 1.4s</li>
           </ul>
           <ul class="chips">
-            <li>Next.js</li>
             <li>TypeScript</li>
-            <li>AI</li>
+            <li>Next.js</li>
+            <li>API routes</li>
+            <li>Gemma</li>
           </ul>
           <div class="button-row card-actions">
+            <a class="btn btn--sm" href="/projects/momentum.html"
+              >Read more <Icon name="arrowRight" size={18} /></a
+            >
             <a class="btn btn--sm" href="https://github.com/energizee/GDGStudyApp"
               >View the repo <Icon name="external" size={18} /></a
             >
@@ -277,11 +282,23 @@ import SectionHead from "../components/SectionHead.astro";
               <dd>Live webcam frames and video, where speed matters most</dd>
             </div>
           </dl>
+          <Points
+            items={[
+              {
+                lead: "My part:",
+                text: "I wrote the file transfer side and worked on the architecture for the core connectivity.",
+              },
+            ]}
+          />
           <ul class="chips">
             <li>Java</li>
-            <li>TCP/UDP Sockets</li>
+            <li>TCP/UDP sockets</li>
+            <li>Concurrency</li>
             <li>JavaFX</li>
           </ul>
+          <p class="source-note">
+            Source is on the university's private GitLab and cannot be published.
+          </p>
         </article>
 
         <article class="card card--ember" data-reveal>
@@ -294,12 +311,19 @@ import SectionHead from "../components/SectionHead.astro";
               { lead: "Process control", text: "with fork and exec." },
               { lead: "Built-ins", text: "and user-defined aliases." },
               { lead: "Command history", text: "that persists between sessions." },
+              {
+                lead: "Lesson learned:",
+                text: "this is where I discovered the pain of segfaults in C, and how to track them down!",
+              },
             ]}
           />
           <ul class="chips">
             <li>C</li>
             <li>POSIX</li>
           </ul>
+          <p class="source-note">
+            Source is on the university's private GitLab and cannot be published.
+          </p>
         </article>
       </div>
     </section>
@@ -378,6 +402,10 @@ import SectionHead from "../components/SectionHead.astro";
               {
                 lead: "Teaching:",
                 text: "designed and delivered science lessons for primary school pupils, including one on programming BBC micro:bits.",
+              },
+              {
+                lead: "Hardest audience:",
+                text: "explaining a for-loop to a nine-year-old is still the hardest technical communication I have had to do!",
               },
             ]}
           />

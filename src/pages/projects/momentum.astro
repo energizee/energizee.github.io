@@ -1,0 +1,132 @@
+---
+import Project from "../../layouts/Project.astro";
+import DetailSection from "../../components/DetailSection.astro";
+---
+
+<Project
+  title="Momentum — Lee Elder"
+  description="Momentum, an AI study companion built solo in six hours around Gemma, Google’s open-weight model. A project write-up by Lee Elder."
+  ogTitle="Momentum - Lee Elder"
+  ogDescription="An AI study companion built solo in six hours, against teams of up to three."
+  heading="Momentum"
+  note="2026 | Solo hackathon entry, GDG on Campus Aberdeen"
+  lede="An AI study companion built solo in six hours, against teams of up to three."
+  chips={["TypeScript", "Next.js", "API routes", "Gemma", "Vercel"]}
+  icon="bolt"
+  tint="mint"
+  link={{ href: "https://github.com/energizee/GDGStudyApp", label: "View the repo" }}
+>
+  <DetailSection title="The brief">
+    <p>
+      We were tasked with building an application around Gemma, Google's
+      open-weight model, within a 6 hour window. The brief was that it had
+      to be a study companion that actually helped you study by doing
+      things, not just one that displays information back at you. First
+      place was $500, and I was in as a solo entrant against teams of 2-3
+      people, so being careful with my scope mattered more than anything
+      else I did that day.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="What I built">
+    <p>
+      Momentum keeps a live profile of you as a learner, so what you know,
+      what you keep putting off, and what is coming up due, then turns that
+      into an actual plan. It makes study sessions with a set mode and a
+      first step small enough that you will actually start it, writes
+      practice questions, marks your answers, and shuffles your schedule
+      around when you keep skipping the same session. You can also point it
+      at a photo of your syllabus or a past paper to set it up, and it will
+      mark a photo of your handwritten work.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="One route, ten jobs">
+    <p>
+      Every single call to the model goes through one API route on the
+      server. Ten different tasks run through it, so triage, planning,
+      quizzing, marking, profiling, schedule changes, unblocking and pulling
+      data out of documents, and nothing else in the app is allowed to talk
+      to Google directly.
+    </p>
+    <p>
+      Part of that is just security, as the API key lives on the server and
+      never ends up in the browser bundle. The other part is that caching,
+      timeouts, fallbacks and validation apply to every single call, so
+      having one door meant I got to write each of those once instead of ten
+      times.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="Not trusting anything the model says">
+    <p>
+      This is the bit I would defend hardest. A model is just a remote
+      service handing you back data you have not validated, and the fact
+      that it comes back as convincing English makes it more dangerous to
+      trust. Nothing Gemma gives me reaches app state without
+      being checked first.
+    </p>
+    <p>
+      Mastery changes get clamped to a sensible range, session lengths get
+      clamped between 5 and 90 minutes, study modes get checked against a
+      real enum, and any session the model refers to gets checked against
+      sessions that actually exist and are still open. Gemma can also change
+      the schedule itself through tool calls, so it can split a session,
+      reschedule it, change its mode or drop it, and every one of those gets
+      validated against real IDs, real values and dates that are not in the
+      past before it gets applied. This was not me being paranoid either.
+      While testing, the model dropped a required ID once and made up a
+      study mode once.
+    </p>
+    <p>
+      Structured output is not documented for Gemma on this API, so I could
+      not just ask for a response that matches a schema. Instead I ask for
+      JSON and parse it defensively, with a scan that counts brackets and
+      tracks whether it is currently inside a string, so markdown fences,
+      waffle before the JSON and commentary after it do not break anything.
+      If it still fails to parse, the broken output goes back to the model
+      once at temperature zero on a short timer to get fixed, which is
+      cheaper and works better than failing the whole request.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="Making it fast enough to demo">
+    <p>
+      Two things I measured ended up shaping the whole app. The first is
+      that Gemma thinks before it answers, and those thinking tokens come
+      out of the same budget as the output. Left on the default the model
+      spent its entire allowance thinking and handed me back an empty
+      string. I measured 147 thinking tokens and zero output tokens on a
+      request that shouldve just returned one sentence. Turning the thinking
+      budget right down took that same call from 5.0s to 1.4s, which is what
+      kept the big planning calls inside the 60 second serverless limit.
+    </p>
+    <p>
+      The second is that the SDK has no default timeout, so a stalled
+      connection just hangs until the OS gives up on it. I watched one run
+      for 352 seconds against a function limit of 60. Now every call has its
+      own deadline and falls back to a lower latency variant of the model if
+      the first one dies, but deliberately not if it is only being slow.
+    </p>
+    <p>
+      Repeat calls get soaked up by two layers of caching. There is a
+      fingerprint on the client that only covers the state the model
+      actually reasons about, so changing a course colour does not throw the
+      answer away but finishing a session does, and behind that a small
+      capped in-memory cache with a 15 minute expiry. In a live demo,
+      clicking back and forward would otherwise burn through quota working
+      out answers that cannot possibly have changed.
+    </p>
+  </DetailSection>
+
+  <DetailSection title="What the model does not get to decide">
+    <p>
+      Grade projections and stakes are plain arithmetic, and that is
+      deliberate. If you ask what you need on the final you deserve the same
+      answer twice, and you deserve to be able to check it yourself. Gemma
+      reasons about those numbers but it never changes them. Working out
+      which parts of the product should not touch the model at all was
+      probably the most useful call I made under that time pressure.
+    </p>
+  </DetailSection>
+</Project>
